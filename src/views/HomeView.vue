@@ -6,7 +6,8 @@
         {{ introductionText }}
       </div>
       <div class="col">
-        RIGHT
+        <LoginRegisterBox/>
+
       </div>
 
     </div>
@@ -15,13 +16,13 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import {HOME_VIEW_INTRODUCTION} from "@/assets/text.storage";
+import LoginRegisterBox from "@/views/LoginRegisterBox.vue";
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    LoginRegisterBox
   },
   data() {
     return {
