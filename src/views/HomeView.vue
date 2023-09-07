@@ -8,7 +8,6 @@
       <div class="col">
         <LoginRegisterBox/>
       </div>
-
     </div>
   </div>
 </template>
