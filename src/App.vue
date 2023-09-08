@@ -1,9 +1,10 @@
 <template>
-  <nav v-if="false">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav v-if="true">
+    <router-link to="/shop">Avaleht</router-link> |
+    <router-link to="/shop">E-pood</router-link> |
+    <router-link to="/shop">Kontakt</router-link>
   </nav>
-  <router-view/>
+  <router-view @emit-event-update-nav-menu="updateNavMenu"/>
 </template>
 
 <style>
@@ -28,3 +29,5 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+<script setup>
+</script>
