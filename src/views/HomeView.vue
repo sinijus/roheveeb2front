@@ -2,8 +2,8 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo_roheveeb.png" height="200">
     <div class="row">
-      <div class="col">
-        {{ introductionText }}
+      <div class="col justify-content-right">
+        <div> {{ introductionText }}</div>
       </div>
       <div class="col">
         <LoginRegisterBox/>
@@ -17,7 +17,7 @@
 <script>
 // @ is an alias to /src
 import {HOME_VIEW_INTRODUCTION} from "@/assets/text.storage";
-import LoginRegisterBox from "@/views/LoginRegisterBox.vue";
+import LoginRegisterBox from "@/components/LoginRegisterBox.vue";
 
 export default {
   name: 'HomeView',
