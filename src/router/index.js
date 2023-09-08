@@ -1,50 +1,56 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import RegisterView from "@/views/RegisterView.vue";
 import ShopView from "@/views/ShopView.vue";
+import ErrorView from "@/views/ErrorView.vue";
 import CartView from "@/views/CartView.vue";
+import ProfileView from "@/views/ProfileView.vue";
+import AdminView from "@/views/AdminView.vue";
+import AboutView from "@/views/AboutView.vue";
+import RegisterView from "@/views/RegisterView.vue";
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'homeRoute',
     component: HomeView
   },
   {
     path: '/register',
-    name: 'register',
+    name: 'registerRoute',
     component: RegisterView
   },
  {
     path: '/shop',
-    name: 'shop',
+    name: 'shopRoute',
     component: ShopView
   },
  {
     path: '/cart',
-    name: 'cart',
+    name: 'cartRoute',
     component: CartView
   },
 
  {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/profile',
+    name: 'profileRoute',
+    component: ProfileView
   },
  {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/admin',
+    name: 'adminRoute',
+    component: AdminView
   },
   {
     path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
+    name: 'aboutRoute',
+    component: AboutView
+
+  },
+  {
+    path: '/error',
+    name: 'errorRoute',
+    component: ErrorView
+
   }
 ]
 

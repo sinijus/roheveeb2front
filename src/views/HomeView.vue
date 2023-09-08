@@ -16,7 +16,7 @@
 
 <script>
 // @ is an alias to /src
-import {HOME_VIEW_INTRODUCTION} from "@/assets/text.storage";
+import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
 import LoginRegisterBox from "@/components/LoginRegisterBox.vue";
 
 export default {
@@ -29,6 +29,11 @@ export default {
       introductionText: HOME_VIEW_INTRODUCTION
     }
   },
+  methods: {
+    login() {
+
+    }
+  }
 }
 
 </script>
