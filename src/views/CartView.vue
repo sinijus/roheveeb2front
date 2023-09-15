@@ -13,6 +13,12 @@ fieldset {
   text-align: left; /* Align text to the left */
 }
 
+
+form {
+  margin-left: 80px;
+  margin-top: 40px;
+
+}
 </style>
 
 <script setup>
@@ -58,7 +64,7 @@ fieldset {
   </div>
 
 
-  <div> <form>
+  <component> <form>
   <fieldset class="row">
     <legend>Tarne:</legend>
 
@@ -73,7 +79,7 @@ fieldset {
       </div>
       </fieldset>
   </form>
-</div>
+</component>
 
 
   <div>
@@ -86,39 +92,39 @@ fieldset {
     <h11>Summa tuleb tuua kogus x hind</h11>
   </div>
 
-  <div class="col">
-    <form>
-        <fieldset class="row">
-      <input type="radio" name="selection">
-      <h6>Maksan pangaülekandega</h6>
 
-      <input type="radio" name="selection">
-      <h6>Tasun sularahas kauba kättesaamisel</h6>
-        </fieldset>
-    </form></div>
+    <component> <form>
+      <fieldset class="row">
+        <legend>Makseviis:</legend>
 
-  <br>
+        <div>
+          <input type="radio" id="banktransferSEB" name="paymentmethod" value="transfer" checked />
+          <label for="banktransfer">SEB</label>
+        </div>
 
-  <div class="align-content-left"><form>
-    <div class="column"></div>
-    <fieldset>
-      <legend></legend>
+        <div>
+          <input type="radio" id="banktransferLUMINOR" name="paymentmethod" value="transfer" checked />
+          <label for="banktransfer">LUMINOR</label>
+        </div>
 
-      <input type="radio" name="selection">
-      SEB
+        <div>
+          <input type="radio" id="banktransferSWEDBANK" name="paymentmethod" value="transfer" checked />
+          <label for="banktransfer">SWEDBANK</label>
+        </div>
 
-      <input  type="radio" name="selection">
-      LUMINOR
+        <div>
+          <input type="radio" id="banktransferLHV" name="paymentmethod" value="transfer" checked />
+          <label for="banktransfer">LHV</label>
+        </div>
 
-      <input type="radio" name="selection">
-      SWEDBANK
+        <div>
+          <input type="radio" id="paywithcash" name="paymentmethod" value="cash" />
+          <label for="paywithcash">Tasun sularahas kauba kättesaamisel</label>
+        </div>
+      </fieldset>
+    </form>
+    </component>
 
-      <input  type="radio" name="selection">
-      LHV
-
-    </fieldset>
-  </form>
-  </div>
 
 </template>
 
