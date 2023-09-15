@@ -3,14 +3,13 @@ import HomeView from '../views/HomeView.vue'
 import ShopView from "@/views/ShopView.vue";
 import ErrorView from "@/views/ErrorView.vue";
 import CartView from "@/views/CartView.vue";
-import ProfileView from "@/views/ProfileCustomerView.vue";
+import ProfileCustomerView from "@/views/ProfileCustomerView.vue";
 import AdminView from "@/views/AdminView.vue";
 import AboutView from "@/views/AboutView.vue";
-import RegisterView from "@/views/RegisterCustomerView.vue";
+
 import RegisterCompanyView from "@/views/RegisterCompanyView.vue";
-import RegisterCustomerView from "@/views/RegisterCustomerView.vue";
-import ProfileCustomerView from "@/views/ProfileCustomerView.vue";
 import ProfileCompanyView from "@/views/ProfileCompanyView.vue";
+import RegisterCustomerView from "@/views/RegisterCustomerView.vue";
 
 const routes = [
     {

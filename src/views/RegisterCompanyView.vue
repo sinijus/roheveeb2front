@@ -3,12 +3,11 @@
   <div class="container text-center">
     <div class="row">
       <div class="col">
-        Registreeri müüjaks
+        <h1>Registreeri müüjaks</h1>
       </div>
     </div>
   </div>
 </div>
-
 </template>
 
 
