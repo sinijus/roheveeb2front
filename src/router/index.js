@@ -19,12 +19,12 @@ const routes = [
     },
     {
         path: '/register/customer',
-        name: 'registerRoute',
+        name: 'registerCustomerRoute',
         component: RegisterCustomerView
     },
     {
         path: '/register/company',
-        name: 'aboutRoute',
+        name: 'registerCompanyRoute',
         component: RegisterCompanyView
 
     },
@@ -40,12 +40,12 @@ const routes = [
     },
     {
         path: '/profile/customer',
-        name: 'profileRoute',
+        name: 'profileCustomerRoute',
         component: ProfileCustomerView
     },
     {
         path: '/profile/company',
-        name: 'profileRoute',
+        name: 'profileCompanyRoute',
         component: ProfileCompanyView
     },
     {
