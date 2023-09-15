@@ -7,6 +7,10 @@ import ProfileView from "@/views/ProfileCustomerView.vue";
 import AdminView from "@/views/AdminView.vue";
 import AboutView from "@/views/AboutView.vue";
 import RegisterView from "@/views/RegisterCustomerView.vue";
+import RegisterCompanyView from "@/views/RegisterCompanyView.vue";
+import RegisterCustomerView from "@/views/RegisterCustomerView.vue";
+import ProfileCustomerView from "@/views/ProfileCustomerView.vue";
+import ProfileCompanyView from "@/views/ProfileCompanyView.vue";
 
 const routes = [
     {
@@ -17,12 +21,12 @@ const routes = [
     {
         path: '/register/customer',
         name: 'registerRoute',
-        component: RegisterView
+        component: RegisterCustomerView
     },
     {
         path: '/register/company',
         name: 'aboutRoute',
-        component: AboutView
+        component: RegisterCompanyView
 
     },
     {
@@ -38,12 +42,12 @@ const routes = [
     {
         path: '/profile/customer',
         name: 'profileRoute',
-        component: ProfileView
+        component: ProfileCustomerView
     },
     {
         path: '/profile/company',
         name: 'profileRoute',
-        component: ProfileView
+        component: ProfileCompanyView
     },
     {
         path: '/admin',
