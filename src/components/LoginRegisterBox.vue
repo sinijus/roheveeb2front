@@ -8,7 +8,7 @@
       </div>
       <div>
         <div>
-          <button type="button" class="btn btn-link">Registreeri</button>
+          <button type="button" class="btn btn-link" >Registreeri</button>
         </div>
         <div>
           <button @click="login" type="button" class="btn btn-success">Logi sisse</button>
@@ -19,6 +19,7 @@
   </div>
 
 </template>
+
 <script>
 import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
 import router from "@/router";
