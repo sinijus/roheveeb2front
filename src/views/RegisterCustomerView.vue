@@ -108,15 +108,9 @@ import RegisterNewCustomerEmail from "@/views/RegisterNewCustomerEmail.vue";
   <br>
 
 <div>
-  <button type="button" class="btn btn-outline-success" id="tagasiButton">Tagasi</button>
-  <button type="button" class="btn btn-success">Registreeri</button>
+  <a href="/" class="btn btn-outline-success">Pealehele</a>
+  <button type="button" class="btn btn-success" id="tagasiButton">Registreeri</button>
 
-  <script>
-    document.getElementById("tagasiButton").addEventListener("click", function() {
-      // Redirect the user to the main page
-      window.location.href = "/"; // Replace with your main page URL
-    });
-  </script>
 
 </div>
 </template>
