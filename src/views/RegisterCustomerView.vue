@@ -55,10 +55,9 @@ import RegisterNewCustomerEmail from "@/views/RegisterNewCustomerEmail.vue";
             <div class="mb-3">
               <label for="nameField" class="form-label">Sisesta eesnimi*</label>
               <input type="name" class="form-control" id="nameField" placeholder="Nimi*">
-            </div>
-            <div class="mb-3">
+
               <label for="insertNewCustomerFamilyField" class="form-label">Sisesta perenimi*</label>
-              <input type="familyName" class="form-control" id="insertNewCustomerFamilyname" placeholder="Perekonnanimi*">
+              <input type="file" class="form-control" id="insertNewCustomerFamilyname" placeholder="Perekonnanimi*">
             </div>
           </form>
         </div>
@@ -70,7 +69,7 @@ import RegisterNewCustomerEmail from "@/views/RegisterNewCustomerEmail.vue";
       <div class="col col-3 mt-3">
         <div class="mb-3">
           <label for="newCustomerPhoneNumber" class="form-label">Telefoninumber</label>
-          <input type="phone" class="form-control" id="newCustomerPhoneNumber" aria-describedby="insertNewCustomerPhoneNumber" placeholder="+372 xx xxx xxx)">
+          <input type="file" class="form-control" id="newCustomerPhoneNumber" aria-describedby="insertNewCustomerPhoneNumber" placeholder="+372 xx xxx xxx)">
           <div id="insertNewCustomerPhoneNumber"></div>
         </div>
       </div>
