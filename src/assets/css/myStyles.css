@@ -1,3 +1,7 @@
 .myDropdown {
     margin: 10px;
 }
+.form-select {
+    width: 300px; /* Adjust the height as needed */
+    /* You can also adjust other styles like font-size, padding, etc. */
+}

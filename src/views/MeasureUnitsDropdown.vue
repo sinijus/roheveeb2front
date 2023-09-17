@@ -1,5 +1,5 @@
 <template>
-  <select v-model="selectedMeasureId" @change="emitSelectedMeasureId" class="form-select">
+  <select v-model="selectedMeasureId" @change="emitSelectedMeasureId" class="form-select m-2">
     <option selected :value="0">g</option>
     <option v-for="measureUnit in measureUnits" :value="measureUnit.measureId" :key="measureUnit.measureId">
       {{ measureUnit.measureName }}
@@ -42,3 +42,4 @@ export default {
 
 }
 </script>
+
