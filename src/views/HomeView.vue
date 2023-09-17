@@ -37,3 +37,12 @@ export default {
 }
 
 </script>
+
+<style>
+body {
+  background-image: url('https://media.istockphoto.com/id/1393465643/photo/empty-wood-table-top-with-blur-fruits-in-basket-supermarket-grocery-store-background.jpg?s=612x612&w=0&k=20&c=0zZVQiy22B0ZrH76_L719EHi3dSwNOfUQ8VOOIiSxDg='); /* Adjust the path to your image */
+  background-size: cover; /* Adjust as needed */
+  background-repeat: no-repeat; /* Adjust as needed */
+  background-position: center center; /* Adjust as needed */
+}
+</style>
