@@ -10,6 +10,8 @@ import AboutView from "@/views/AboutView.vue";
 import RegisterCompanyView from "@/views/RegisterCompanyView.vue";
 import ProfileCompanyView from "@/views/ProfileCompanyView.vue";
 import RegisterCustomerView from "@/views/RegisterCustomerView.vue";
+import AddNewProduct from "@/views/AddNewProductView.vue";
+import AddNewProductView from "@/views/AddNewProductView.vue";
 
 const routes = [
     {
@@ -32,6 +34,12 @@ const routes = [
         path: '/shop',
         name: 'shopRoute',
         component: ShopView
+    },
+    {
+        path: '/add-new-product',
+        name: 'addNewProductRoute',
+        component: AddNewProductView
+
     },
     {
         path: '/cart',
