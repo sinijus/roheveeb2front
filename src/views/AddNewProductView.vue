@@ -80,9 +80,9 @@
 </template>
 
 <script>
-import CategoriesDropdown from "@/views/CategoriesDropdown.vue";
-import TypesDropdown from "@/views/TypesDropdown.vue";
-import MeasureUnitsDropdown from "@/views/MeasureUnitsDropdown.vue";
+import CategoriesDropdown from "@/components/CategoriesDropdown.vue";
+import TypesDropdown from "@/components/TypesDropdown.vue";
+import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 import router from "@/router";
 
 export default {

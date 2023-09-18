@@ -8,7 +8,6 @@
       <div class="col">
         <LoginRegisterBox/>
       </div>
-      <ModalRegister/>
     </div>
   </div>
 </template>
@@ -22,7 +21,7 @@ import ModalRegister from "@/views/ModalRegister.vue";
 export default {
   name: 'HomeView',
   components: {
-    ModalRegister,
+    Modal: ModalRegister,
     LoginRegisterBox
   },
   data() {
