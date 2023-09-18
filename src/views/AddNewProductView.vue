@@ -2,57 +2,58 @@
   <div class="AddNewProduct">
     <div class="container text-center">
       <div class="row justify-content-center">
-        <div class="col col-3">
+        <div class="col col-3 mb-3">
           <h1>Lisa uus toode</h1>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col col-3">
-        </div>
-        <div class="col col-3">
-          <input v-model="text" type="text" class="form-control m-1" id="inputField" placeholder="Toote nimi">
-        </div>
-        <div class="col col-3">
-          <button type="button" class="btn btn-outline-light m-1">Otsi</button>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col col-3">
-        </div>
-        <div col col-3>
-          <categoriesDropdown/>
-        </div>
-        <div class="col col-3">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Toote nimi">
+            <button type="button" class="btn btn-outline-light">Otsi</button>
+          </div>
+
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col col-3">
-        </div>
-        <div col col-3>
-          <typesDropdown/>
-        </div>
-        <div class="col col-3">
-          <button type="button" class="btn btn-outline-light m-1">Lisa</button>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col col-3">
-        </div>
-        <div col col-3>
-          <MeasureUnitsDropdown/>
-        </div>
-        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <categoriesDropdown class="form-control"/>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col col-3">
-        </div>
-        <div class="col col-3">
-          <input v-model="text" type="text" class="form-control m-1" id="inputField" placeholder="Hind">
-        </div>
-        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <typesDropdown class="form-control"/>
+              <button type="button" class="btn btn-outline-light">Lisa</button>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="row justify-content-center">
+        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <MeasureUnitsDropdown class="form-control"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="Hind">
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row justify-content-center">
         <div class="col col-3">
         </div>
@@ -67,13 +68,11 @@
         <div class="col col-3">
         </div>
         <div class="col col-3">
-          <button type="button" class="btn btn-success m-1">Kinnita</button>
+          <button type="button" class="btn btn-success" @click="goToShop">Kinnita</button>
         </div>
         <div class="col col-3">
         </div>
       </div>
-
-
     </div>
   </div>
 
@@ -84,6 +83,7 @@
 import CategoriesDropdown from "@/views/CategoriesDropdown.vue";
 import TypesDropdown from "@/views/TypesDropdown.vue";
 import MeasureUnitsDropdown from "@/views/MeasureUnitsDropdown.vue";
+import router from "@/router";
 
 export default {
   name: "AddNewProduct",
@@ -98,7 +98,12 @@ export default {
         }
       ]
     }
-  }
+  },
+  methods: {
+    goToShop() {
+      router.push({name: 'shopRoute'})
+    }
+  },
 }
 
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <select v-model="selectedCategoryId" @change="emitSelectedCategoryId" class="form-select m-2">
+    <select v-model="selectedCategoryId" @change="emitSelectedCategoryId" class="form-select">
       <option selected :value="0">Juurviljad ja köögiviljad</option>
       <option v-for="category in categories" :value="category.categoryId" :key="category.categoryId">{{
         category.categoryName }}
