@@ -8,7 +8,7 @@
       </div>
       <div>
         <div>
-          <button type="button" class="btn btn-link" >Registreeri</button>
+          <button type="button" class="btn btn-link" @click="openModalRegister()">Registreeri</button>
         </div>
         <div>
           <button @click="login" type="button" class="btn btn-success">Logi sisse</button>
@@ -50,6 +50,9 @@ export default {
       } else {
         alert(FILL_MANDATORY_FIELDS)
       }
+    },
+    openModalRegister() {
+      this.$refs.modalRegisterRef.$refs.modalRef.openModal()
     },
 
     mandatoryFieldsAreFilled() {

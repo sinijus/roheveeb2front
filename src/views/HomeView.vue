@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo_roheveeb.png" height="200">
+    <ModalRegister ref="modalRegisterRef"/>
     <div class="row">
       <div class="col justify-content-right">
         <div> {{ introductionText }}</div>
@@ -16,12 +16,12 @@
 // @ is an alias to /src
 import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
 import LoginRegisterBox from "@/components/LoginRegisterBox.vue";
-import ModalRegister from "@/views/ModalRegister.vue";
+import ModalRegister from "@/components/modal/ModalRegister.vue";
 
 export default {
   name: 'HomeView',
   components: {
-    Modal: ModalRegister,
+    ModalRegister,
     LoginRegisterBox
   },
   data() {
@@ -32,7 +32,7 @@ export default {
   methods: {
     login() {
 
-    }
+    },
   }
 }
 
