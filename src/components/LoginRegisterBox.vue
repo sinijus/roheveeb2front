@@ -1,22 +1,62 @@
 <template>
-  <div class="col col-3">
-    <div class="row justify-content-right" @keydown.enter="login">
-      <div>
-        <input v-model="email" type="text" class="form-control" placeholder="e-mail" aria-describedby="addon-wrapping">
-        <input v-model="password" type="text" class="form-control" placeholder="parool"
-               aria-describedby="addon-wrapping">
-      </div>
-      <div>
-        <div>
-          <button type="button" class="btn btn-link" @click="openModalRegister()">Registreeri</button>
-        </div>
-        <div>
-          <button @click="login" type="button" class="btn btn-success">Logi sisse</button>
+  <div class="LoginRegisterBox">
+    <ModalRegister ref="modalRegisterRef"/>
+    <div class="row justify-content-evenly">
+      <div class="col col-3">
+        <div class="input-group mb-2">
+          <div class="input-group">
+            <input v-model="email" type="text" class="form-control" placeholder="e-mail">
+          </div>
         </div>
       </div>
     </div>
-
+    <div class="row justify-content-evenly">
+      <div class="col col-3">
+        <div class="input-group mb-2">
+          <div class="input-group">
+            <input v-model="password" type="text" class="form-control" placeholder="parool">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-evenly">
+      <div class="col col-3">
+        <div class="input-group mb-2">
+          <div class="input-group">
+            <button type="button" class="btn btn-link" @click="openModalRegister()">Registreeri</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-evenly">
+      <div class="col col-3">
+        <div class="input-group mb-2">
+          <div class="input-group">
+            <button @click="login" type="button" class="btn btn-success">Logi sisse</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!--    <div class="col col-3">-->
+  <!--      <div class="row justify-content-right" @keydown.enter="login">-->
+  <!--        <div>-->
+  <!--          <input v-model="email" type="text" class="form-control" placeholder="e-mail"-->
+  <!--                 aria-describedby="addon-wrapping">-->
+  <!--          <input v-model="password" type="text" class="form-control" placeholder="parool"-->
+  <!--                 aria-describedby="addon-wrapping">-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <div>-->
+  <!--            <button type="button" class="btn btn-link" @click="openModalRegister()">Registreeri</button>-->
+  <!--          </div>-->
+  <!--          <div>-->
+  <!--            <button @click="login" type="button" class="btn btn-success">Logi sisse</button>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
 
 </template>
 
@@ -25,9 +65,12 @@ import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
 import router from "@/router";
 import {INCORRECT_CREDENTIALS} from "@/assets/script/error.code";
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/error.message";
+import ModalRegister from "@/components/modal/ModalRegister.vue";
+import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 
 export default {
   name: 'LoginRegisterBox',
+  components: {MeasureUnitsDropdown, ModalRegister},
   data() {
     return {
       introductionText: HOME_VIEW_INTRODUCTION,
@@ -60,7 +103,7 @@ export default {
     },
 
     sendLoginRequest() {
-      this.$http.get( '/login',{
+      this.$http.get('/login', {
             params: {
               email: this.email,
               password: this.password

@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <ModalRegister ref="modalRegisterRef"/>
     <div class="row">
       <div class="col justify-content-right">
         <div> {{ introductionText }}</div>
