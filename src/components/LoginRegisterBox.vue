@@ -2,7 +2,7 @@
   <div class="LoginRegisterBox">
     <ModalRegister ref="modalRegisterRef"/>
     <div class="row justify-content-evenly">
-      <div class="col col-3">
+      <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
             <input v-model="email" type="text" class="form-control" placeholder="e-mail">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row justify-content-evenly">
-      <div class="col col-3">
+      <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
             <input v-model="password" type="text" class="form-control" placeholder="parool">
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="row justify-content-evenly">
-      <div class="col col-3">
+      <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
             <button type="button" class="btn btn-link" @click="openModalRegister()">Registreeri</button>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="row justify-content-evenly">
-      <div class="col col-3">
+      <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
             <button @click="login" type="button" class="btn btn-success">Logi sisse</button>
