@@ -7,9 +7,8 @@
       </div>
       <div class="col">
         <LoginRegisterBox/>
-
       </div>
-
+      <ModalRegister/>
     </div>
   </div>
 </template>
@@ -18,10 +17,12 @@
 // @ is an alias to /src
 import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
 import LoginRegisterBox from "@/components/LoginRegisterBox.vue";
+import ModalRegister from "@/views/ModalRegister.vue";
 
 export default {
   name: 'HomeView',
   components: {
+    ModalRegister,
     LoginRegisterBox
   },
   data() {
