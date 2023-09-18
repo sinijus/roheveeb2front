@@ -1,8 +1,13 @@
 <template>
-  <nav v-if="true">
-    <router-link to="/shop">Avaleht</router-link> |
-    <router-link to="/shop">E-pood</router-link> |
+  <nav >
+    <div v-show="true">
+
+    <router-link to="/shop">Avaleht</router-link>
+    |
+    <router-link to="/shop">E-pood</router-link>
+    |
     <router-link to="/shop">Kontakt</router-link>
+    </div>
   </nav>
   <router-view @emit-event-update-nav-menu="updateNavMenu"/>
 </template>

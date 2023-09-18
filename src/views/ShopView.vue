@@ -1,5 +1,5 @@
-<template>
-  <div class="Pood">
+<template class="leht">
+  <div class="page">
     <div class="container text-center">
       <div class="row">
         <div class="col">
@@ -24,21 +24,16 @@
             Tootevalik
           </button>
         </div>
-        <!--        <div v-for="(item, index) in items" :key="index" class="container text-center">-->
-        <!--        //siia tuleb v-for loop kui andmed käes backist-->
-        <div class="row">
-          <div class="col">
-            Column
-          </div>
-          <div class="col">
-            Column
-          </div>
-          <div class="col">
-            Column
+      </div>
+
+      <div>
+        <div class="grid-page">
+          <div class="grid-item" v-for="product in products" :key="product.id">
+            <product-item :product="product" :order-id="orderInfo.orderId"/>
           </div>
         </div>
-        <!--        </div>-->
       </div>
+
     </div>
   </div>
 </template>
@@ -46,11 +41,49 @@
 
 <script>
 import router from "@/router";
+import ProductItem from "@/components/ProductItem.vue";
 
 export default {
   name: "ShopView",
+  components: {ProductItem: ProductItem},
+
+  data() {
+    return {
+      products: [
+        {
+          productId: 0,
+          companyId: 0,
+          companyLocationId: 0,
+          companyLocationCountyId: 0,
+          companyLocationCountyName: '',
+          companyName: '',
+          productTypeId: 0,
+          productTypeName: '',
+          productTypeCategoryId: 0,
+          productTypeCategoryName: '',
+          measureUnitId: 0,
+          measureUnitName: '',
+          productImageId: 0,
+          productImageData: '',
+          productName: '',
+          price: 0,
+          productBalance: 0
+        }
+      ],
+      errorResponseProducts: {
+        message: '',
+        errorCode: 0
+      },
+      orderInfo: {
+        orderId: 0,
+        numberOfProducts: 0
+      },
+    }
+
+  },
 
   methods: {
+
 
     goToProfile() {
       router.push({name: 'profileRoute'})
@@ -58,29 +91,45 @@ export default {
     goToCart() {
       router.push({name: 'cartRoute'})
     },
+
+    findAllProducts() {
+      this.$http.get("/products")
+          .then(response => {
+            this.products = response.data
+          })
+          .catch(error => {
+            this.errorResponseProducts = error.response.data
+            if (this.errorResponseProducts.errorCode === 222) {
+              alert('ühtegi toodet ei leitud')
+            }
+            router.push({name: 'errorRoute'})
+          })
+    },
+    getPendingOrderId() {
+      this.$http.get("/order/pending", {
+            params: {
+              userId: sessionStorage.getItem('userId'),
+            }
+          }
+      ).then(response => {
+        this.orderId = response.data
+        alert('orderId: ' + this.orderInfo.orderId)
+      }).catch(error => {
+        alert('getPendingOrderId Error')
+      })
+    },
+
+  },
+  mounted() {
+    this.getPendingOrderId()
+  },
+  beforeMount() {
+    this.findAllProducts()
+
   }
+
 }
 
 
 </script>
-
-<!--//v-for loopi jaoks-->
-<!--<script>-->
-<!--export default {-->
-<!--  data() {-->
-<!--    return {-->
-<!--      items: [-->
-<!--        { column1: 'Column 1A', column2: 'Column 2A', column3: 'Column 3A' },-->
-<!--        { column1: 'Column 1B', column2: 'Column 2B', column3: 'Column 3B' },-->
-<!--        { column1: 'Column 1C', column2: 'Column 2C', column3: 'Column 3C' },-->
-<!--        // Add more items as needed-->
-<!--      ],-->
-<!--    };-->
-<!--  },-->
-<!--};-->
-<!--</script>-->
-
-<style>
-
-</style>
 
