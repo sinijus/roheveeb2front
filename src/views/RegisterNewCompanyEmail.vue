@@ -13,6 +13,13 @@
 </template>
 <script>
 export default {
-  name: 'registerNewCompanyEmail'
+  name: 'registerNewCompanyEmail',
+  data() {
+    return {
+      email: '',
+      password: ''
+
+    }
+  }
 }
 </script>
