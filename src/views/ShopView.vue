@@ -9,15 +9,17 @@
           <font-awesome-icon :icon="['fas', 'user']" size="lg" @click="goToProfile" type="button"
                              style="margin-right: 10px;"/>
           <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="goToCart" type="button" size="lg"/>
-          {{orderInfo.numberOfProducts}}
+          {{ orderInfo.numberOfProducts }}
         </div>
       </div>
 
-      <div v-if="showProducts" >
+      <div v-if="showProducts">
         <div class="grid-page">
           <div class="grid-item" v-for="product in products" :key="product.id">
-            <product-item :product="product" :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin ="isAdmin"
-                          @event-update-product="findAllProducts()"/>
+            <product-item :product="product"
+                          :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin="isAdmin"
+                          @event-update-product="findAllProducts()"
+                          @event-update-order="getPendingOrderInfo"/>
           </div>
         </div>
       </div>
@@ -30,14 +32,15 @@
 <script>
 import router from "@/router";
 import ProductItem from "@/components/ProductItem.vue";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "ShopView",
-  components: {ProductItem: ProductItem},
+  components: {FontAwesomeIcon, ProductItem: ProductItem},
 
   props: {
-    isCompany: false,
-    isAdmin: false
+    isCompany: Boolean,
+    isAdmin: Boolean
   },
 
   data() {
@@ -100,7 +103,7 @@ export default {
             router.push({name: 'errorRoute'})
           })
     },
-    getPendingOrderId() {
+    getPendingOrderInfo() {
       this.$http.get("/order/pending", {
             params: {
               userId: sessionStorage.getItem('userId'),
@@ -108,7 +111,7 @@ export default {
           }
       ).then(response => {
         this.orderInfo = response.data
-alert(this.orderInfo.orderId)
+        //alert('number of products: ' + this.orderInfo.numberOfProducts)
       }).catch(error => {
         alert('getPendingOrderId Error')
       })
@@ -116,7 +119,7 @@ alert(this.orderInfo.orderId)
 
   },
   mounted() {
-    this.getPendingOrderId()
+    this.getPendingOrderInfo()
   },
   beforeMount() {
     this.findAllProducts()

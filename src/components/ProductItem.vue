@@ -1,5 +1,5 @@
 <template>
-  <AddItemsToCart ref="addItemsToCartRef"/>
+  <AddItemsToCart ref="addItemsToCartRef" @event-update-order="handleOrderUpdate"/>
   <div class="product-item">
     <div class="content">
       <div class="row">
@@ -38,8 +38,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div>
     </div>
   </div>
 </template>
@@ -97,7 +95,6 @@ export default {
     },
 
     deleteProduct() {
-      //alert(this.product.productId)
       this.$http.delete("/product", {
             params: {
               productId: this.product.productId,
@@ -107,16 +104,18 @@ export default {
         alert('toode kustutatud')
         this.handleProductUpdate()
       }).catch(error => {
+
       })
     },
     handleProductUpdate() {
       this.$emit('event-update-product')
     },
-
+    handleOrderUpdate() {
+      this.$emit('event-update-order')
+    },
     goToEditView() {
       router.push({name: 'addNewProductRoute'})
     },
-
   },
 }
 </script>
