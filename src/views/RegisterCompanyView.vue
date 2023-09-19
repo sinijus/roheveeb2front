@@ -23,7 +23,7 @@ form {
 
 <script setup>
 
-import RegisterNewCompanyEmail from "@/views/RegisterNewCompanyEmail.vue";
+import RegisterNewCompanyEmail from "@/components/RegisterNewCompanyEmail.vue";
 </script>
 
 <template>

@@ -12,10 +12,7 @@
 
       <template #footer>
       </template>
-
-
     </Modal>
-
   </div>
 </template>
 <script>
