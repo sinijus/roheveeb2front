@@ -1,7 +1,7 @@
 <template>
-  <div class="LoginRegisterBox">
+  <div @keydown.enter="login()">
     <ModalRegister ref="modalRegisterRef"/>
-    <div class="row justify-content-evenly">
+    <div class="row justify-content-evenly"  >
       <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
@@ -113,6 +113,7 @@ export default {
         this.loginResponse = response.data
         sessionStorage.setItem('userId', this.loginResponse.userId)
         sessionStorage.setItem('roleName', this.loginResponse.roleName)
+        this.$emit('event-update-nav-menu')
         router.push({name: 'shopRoute'})
       }).catch(error => {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓

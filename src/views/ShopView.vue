@@ -9,27 +9,15 @@
           <font-awesome-icon :icon="['fas', 'user']" size="lg" @click="goToProfile" type="button"
                              style="margin-right: 10px;"/>
           <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="goToCart" type="button" size="lg"/>
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle myDropdown" type="button">
-            Maakond
-          </button>
-          <button class="btn btn-secondary dropdown-toggle myDropdown" type="button">
-            Müüja
-          </button>
-          <button class="btn btn-secondary dropdown-toggle myDropdown" type="button">
-            Juurviljad ja köögiviljad
-          </button>
-          <button class="btn btn-secondary dropdown-toggle myDropdown" type="button">
-            Tootevalik
-          </button>
+          {{orderInfo.numberOfProducts}}
         </div>
       </div>
 
-      <div>
+      <div v-if="showProducts" >
         <div class="grid-page">
           <div class="grid-item" v-for="product in products" :key="product.id">
-            <product-item :product="product" :order-id="orderInfo.orderId"/>
+            <product-item :product="product" :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin ="isAdmin"
+                          @event-update-product="findAllProducts()"/>
           </div>
         </div>
       </div>
@@ -46,6 +34,11 @@ import ProductItem from "@/components/ProductItem.vue";
 export default {
   name: "ShopView",
   components: {ProductItem: ProductItem},
+
+  props: {
+    isCompany: false,
+    isAdmin: false
+  },
 
   data() {
     return {
@@ -78,13 +71,12 @@ export default {
         orderId: 0,
         numberOfProducts: 0
       },
+      showProducts: false
     }
 
   },
 
   methods: {
-
-
     goToProfile() {
       router.push({name: 'profileRoute'})
     },
@@ -96,11 +88,14 @@ export default {
       this.$http.get("/products")
           .then(response => {
             this.products = response.data
+            this.showProducts = true
           })
           .catch(error => {
             this.errorResponseProducts = error.response.data
             if (this.errorResponseProducts.errorCode === 222) {
+              this.showProducts = false
               alert('ühtegi toodet ei leitud')
+              return
             }
             router.push({name: 'errorRoute'})
           })
@@ -112,8 +107,8 @@ export default {
             }
           }
       ).then(response => {
-        this.orderId = response.data
-        alert('orderId: ' + this.orderInfo.orderId)
+        this.orderInfo = response.data
+
       }).catch(error => {
         alert('getPendingOrderId Error')
       })
@@ -125,11 +120,8 @@ export default {
   },
   beforeMount() {
     this.findAllProducts()
-
+    this.$emit('event-update-nav-menu')
   }
-
 }
-
-
 </script>
 

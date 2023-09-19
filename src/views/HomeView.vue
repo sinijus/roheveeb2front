@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
+  <div class="page">
     <div class="row">
       <div class="col justify-content-right">
         <div> {{ introductionText }}</div>
       </div>
       <div class="col">
-        <LoginRegisterBox/>
+        <LoginRegisterBox @event-udpate-nav-menu="handleNavMenuUpdate()"/>
       </div>
     </div>
   </div>

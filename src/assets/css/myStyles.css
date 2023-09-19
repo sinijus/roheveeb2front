@@ -11,21 +11,11 @@
     max-width: 300px;
     text-align: left;
     font-weight: bold;
-}
-
-
-/*https://ui.glass/generator/*/
-.page {
-    display: flex;
-    align-content: normal;
-    align-items: center;
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: rgba(255, 255, 255, 0.75);
-    padding: 10px;
     border-radius: 6px;
     border: 1px solid rgba(209, 213, 219, 0.3);
-    max-width: 100%;
 }
 
 .form-select {
@@ -33,7 +23,7 @@
     /* You can also adjust other styles like font-size, padding, etc. */
 }
 
-.image-size{
+.image-size {
     width: 75%;
 }
 
@@ -65,7 +55,6 @@
     top: 5%;
 
 }
-
 
 
 .grid-page {
