@@ -1,7 +1,7 @@
-<template class="leht">
+<template>
   <div class="page">
-    <div class="container text-center">
-      <div class="row">
+    <div class="container">
+      <div class="row ">
         <div class="col">
           <h1>E-pood</h1>
         </div>

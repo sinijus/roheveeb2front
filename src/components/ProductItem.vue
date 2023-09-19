@@ -9,7 +9,12 @@
             <div class="col col-6">
               <div>{{ 'Ühik: ' + product.measureUnitName }}</div>
               <div>{{ product.price + '€' }}</div>
-              <div> Vali kogus element </div>
+              <div>
+                <div class="form-outline col-7">
+                  <input type="number" id="typeNumber" class="form-control" min="1" value="1" />
+                </div>
+
+              </div>
             </div>
             <div class="col">
               <div>
@@ -19,7 +24,7 @@
                 <font-awesome-icon :icon="['fas', 'trash-can']" @click="deleteProduct" type="button" size="lg" />
               </div>
               <div>
-                <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="addProductToCart" type="button" size="lg"/>
+                <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="addProductToCart" type="button" size="xl" aria-valuenow="5"/>
               </div>
             </div>
 
