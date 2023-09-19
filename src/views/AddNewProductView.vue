@@ -1,4 +1,5 @@
 <template>
+  <AddType ref="addTypeRef"/>
   <div class="AddNewProduct">
     <div class="container text-center">
       <div class="row justify-content-center">
@@ -9,10 +10,10 @@
       <div class="row justify-content-center">
         <div class="col col-3">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Toote nimi">
-            <button type="button" class="btn btn-outline-light">Otsi</button>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Toote nimi">
+            </div>
           </div>
-
         </div>
       </div>
       <div class="row justify-content-center">
@@ -29,7 +30,7 @@
           <div class="input-group mb-3">
             <div class="input-group">
               <typesDropdown class="form-control"/>
-              <button type="button" class="btn btn-outline-light">Lisa</button>
+              <button type="button" class="btn btn-outline-light" @click="openAddType()">Lisa</button>
             </div>
           </div>
         </div>
@@ -84,11 +85,14 @@ import TypesDropdown from "@/components/TypesDropdown.vue";
 import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 import router from "@/router";
 import ImageInput from "@/views/ImageInput.vue";
-import AddNewProductImage from "@/views/AddNewProductImage.vue";
+import AddType from "@/components/modal/AddType.vue";
 
 export default {
-  name: "AddNewProduct",
-  components: {AddNewProductImage, ImageInput, MeasureUnitsDropdown, TypesDropdown, CategoriesDropdown},
+  name: "AddNewProductView",
+  components: {
+    AddType,
+    ImageInput, MeasureUnitsDropdown, TypesDropdown, CategoriesDropdown
+  },
   data() {
     return {
       selectedCategoryId: 0,
@@ -106,8 +110,12 @@ export default {
     },
     setAddNewProductRequestImageData(imageDataBase64) {
       this.newProduct.imageData = imageDataBase64
-    }
+    },
+    openAddType() {
+      this.$refs.addTypeRef.$refs.modalRef.openModal()
   },
+
+  }
 
 }
 
