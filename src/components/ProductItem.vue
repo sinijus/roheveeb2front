@@ -1,4 +1,5 @@
 <template>
+  <AddItemsToCart ref="addItemsToCartRef"/>
   <div class="product-item">
     <div class="content">
       <div class="row">
@@ -45,19 +46,21 @@
 
 <script>
 import router from "@/router";
+import AddItemsToCart from "@/components/AddItemsToCart.vue";
 
 export default {
+  components: {AddItemsToCart},
   props: {
-    product: [],
-    orderId: 0,
-    isCompany: false,
-    isAdmin: false
+    product: {},
+    orderId: Number,
+    isCompany: Boolean,
+    isAdmin: Boolean
   },
   data() {
     return {
       addProductBody: {
-        orderId: this.orderId,
-        productId: this.product.productId,
+        orderId: 0,
+        productId: 0,
         productAmount: 1
       },
       errorResponseAddProduct: {
@@ -68,12 +71,16 @@ export default {
   },
   methods: {
     addProductToCart() {
+
+      this.addProductBody.orderId = this.orderId
+      this.addProductBody.productId = this.product.productId
+
       alert('orderId: ' + this.addProductBody.orderId + '\n productId: ' + this.addProductBody.productId + '\n amount: ' + this.addProductBody.productAmount)
       this.$http.post("/order-product", this.addProductBody
       ).then(response => {
         //const responseBody = response.data
         alert('toode lisatud')
-        //todo: Siia tuleb modal jätka ostlemist mine ostukorvi
+        this.openAddItemsToCart()
 
       }).catch(error => {
         this.errorResponseAddProduct = error.response.data
@@ -85,6 +92,10 @@ export default {
 
       })
     },
+    openAddItemsToCart() {
+      this.$refs.addItemsToCartRef.$refs.modalRef.openModal()
+    },
+
     deleteProduct() {
       //alert(this.product.productId)
       this.$http.delete("/product", {
@@ -104,10 +115,9 @@ export default {
 
     goToEditView() {
       router.push({name: 'addNewProductRoute'})
-    }
+    },
 
-  }
-
+  },
 }
 </script>
 

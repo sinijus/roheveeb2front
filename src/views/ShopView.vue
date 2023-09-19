@@ -108,7 +108,7 @@ export default {
           }
       ).then(response => {
         this.orderInfo = response.data
-
+alert(this.orderInfo.orderId)
       }).catch(error => {
         alert('getPendingOrderId Error')
       })
