@@ -46,7 +46,7 @@ import RegisterNewCompanyEmail from "@/components/RegisterNewCompanyEmail.vue";
             <input type="password" class="form-control" id="passwordField" placeholder="Parool*">
           </div>
           <div class="mb-3">
-            <label for="confirmPCustomerasswordField" class="form-label">Kinnita parool*</label>
+            <label for="confirmCustomerasswordField" class="form-label">Kinnita parool*</label>
             <input type="password" class="form-control" id="confirmCustomerPasswordField" placeholder="Parool uuesti*">
           </div>
         </form>
