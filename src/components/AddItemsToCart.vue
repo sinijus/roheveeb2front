@@ -8,11 +8,9 @@
       <template #body>
         <div class="row justify-content-center">
           <div class="col col-5">
-            <div class="input-group mb-3">
-              <button type="button" class="btn btn-outline-success">Jätka ostlemist</button>
-            </div>
             <div>
-              <button type="button" class="btn btn-outline-success">Mine ostukorvi</button>
+              <a href="/shop" class="btn btn-outline-success m-2">Jätka ostlemist</a>
+              <button type="button" class="btn btn-success" @click="goToCart">Mine ostukorvi</button>
             </div>
           </div>
         </div>
@@ -27,9 +25,19 @@
 </template>
 <script>
 import Modal from "@/components/modal/Modal.vue";
+import router from "@/router";
 
 export default {
   name: 'AddItemsToCart',
-  components: {Modal}
+  components: {Modal},
+
+  methods: {
+    goToShopView() {
+      router.push({name: 'shopRoute'})
+    },
+    goToCart() {
+      router.push({name: 'cartRoute'})
+    },
+  },
 }
 </script>
