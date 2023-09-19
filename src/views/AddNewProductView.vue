@@ -56,12 +56,11 @@
 
       <div class="row justify-content-center">
         <div class="col col-3">
-        </div>
-        <div class="col col-3">
           <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>
         </div>
+        <AddNewProductImage/>
         <div class="col col-3">
-          <img src="https://placehold.it/200x200" class="rounded float-end" alt="...">
+          <ImageInput/>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -84,10 +83,12 @@ import CategoriesDropdown from "@/components/CategoriesDropdown.vue";
 import TypesDropdown from "@/components/TypesDropdown.vue";
 import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 import router from "@/router";
+import ImageInput from "@/views/ImageInput.vue";
+import AddNewProductImage from "@/views/AddNewProductImage.vue";
 
 export default {
   name: "AddNewProduct",
-  components: {MeasureUnitsDropdown, TypesDropdown, CategoriesDropdown},
+  components: {AddNewProductImage, ImageInput, MeasureUnitsDropdown, TypesDropdown, CategoriesDropdown},
   data() {
     return {
       selectedCategoryId: 0,
@@ -102,13 +103,12 @@ export default {
   methods: {
     goToShop() {
       router.push({name: 'shopRoute'})
+    },
+    setAddNewProductRequestImageData(imageDataBase64) {
+      this.newProduct.imageData = imageDataBase64
     }
   },
+
 }
 
 </script>
-
-<style>
-
-
-</style>
