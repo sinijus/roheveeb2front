@@ -1,6 +1,33 @@
 .myDropdown {
     margin: 10px;
 }
+
+
+/* shop grid styles*/
+.product-item {
+    /*border: 1px solid #ccc;*/
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+/*https://ui.glass/generator/*/
+.page {
+    display: flex;
+    align-content: normal;
+    align-items: center;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    max-width: 100%;
+}
+
 .form-select {
     width: 300px; /* Adjust the height as needed */
     /* You can also adjust other styles like font-size, padding, etc. */
@@ -32,4 +59,18 @@
     top: 10%; /* Ülemine paigutus on 10% */
     left: 50%; /* Vasak paigutus on 50% */
     transform: translateX(-50%); /* Teisendab X-telje piki -50% võrra */
+}
+
+
+
+.grid-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
 }
