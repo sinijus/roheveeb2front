@@ -1,6 +1,10 @@
 <template>
   <div class="Error">
-    <h1>Ups..Midagi läks valesti!</h1>
+    <h1>Oih..Midagi läks valesti!</h1>
+    <div>
+
+    </div>
+    <img src="../../public/eggiehungry.gif">
   </div>
 </template>
 <script>
