@@ -6,17 +6,23 @@
           <h1>E-pood</h1>
         </div>
         <div class="col">
-          <font-awesome-icon :icon="['fas', 'user']" size="lg" @click="goToProfile" type="button"
-                             style="margin-right: 10px;"/>
-          <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="goToCart" type="button" size="lg"/>
+          <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="goToCart" type="button" size="xl"/>
           {{ orderInfo.numberOfProducts }}
+
+          <font-awesome-icon :icon="['fas', 'user']" size="xl" @click="goToProfile" type="button"
+                             style="margin-right: 10px;"/>
+          <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" size="xl" @click="logOut" type="button" />
         </div>
       </div>
 
       <div v-if="showProducts">
         <div class="grid-page">
+          <div class="grid-item">
+            <font-awesome-icon class="product-item" v-if="isCompany" :icon="['fas', 'plus']" @click="addProduct" type="button" size="2xl" />
+          </div>
           <div class="grid-item" v-for="product in products" :key="product.id">
-            <product-item :product="product"
+            <product-item
+                :product="product"
                           :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin="isAdmin"
                           @event-update-product="findAllProducts()"
                           @event-update-order="getPendingOrderInfo"/>
@@ -115,6 +121,11 @@ export default {
       }).catch(error => {
         alert('getPendingOrderId Error')
       })
+    },
+    logOut() {
+      sessionStorage.clear()
+      this.$emit('event-update-nav-menu')
+      router.push({name: 'homeRoute'})
     },
 
   },
