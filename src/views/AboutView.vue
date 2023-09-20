@@ -1,12 +1,4 @@
 <template>
-  <div class="about">
-    <h1>Meist</h1>
-    <font-awesome-icon :icon="['fas', 'user-secret']"/>
-
-    <h3 class="has-text-align-center">OÜ Päikesetoit<br>registrikood 80626251<br>info@roheveeb.ee<br>pangaarve
-      EE112180221082120538<br>SWEDBANK (SWIFT kood/BIC HABAEE2X)</h3>
-  </div>
-
   <div>
     <h1 itemprop="headline">Koostööpartnerid</h1>
     &nbsp; &nbsp;
@@ -23,6 +15,16 @@
         src="https://mulgimaa.ee/userfiles/image/Mulgi-vaiketootjate-liit-logo-512x512-1.svg"
         alt="" width="180" height="180">&nbsp;&nbsp;
     </div>
+
+    &nbsp;&nbsp;
+    <div class="about">
+      <h2 class="fw-bold">Meist</h2>
+      <font-awesome-icon :icon="['fas', 'user-secret']"/>
+
+      <h4 class="has-text-align-center">OÜ Päikesetoit<br>registrikood 80626251<br>info@roheveeb.ee<br>pangaarve
+        EE112180221082120538<br>SWEDBANK (SWIFT kood/BIC HABAEE2X)</h4>
+    </div>
+
   </div>
 </template>
 
