@@ -17,8 +17,8 @@
 
       <div v-if="showProducts">
         <div class="grid-page">
-          <div class="grid-item">
-            <font-awesome-icon class="product-item" v-if="isCompany" :icon="['fas', 'plus']" @click="addProduct" type="button" size="2xl" />
+          <div class="grid-item"  v-if="isCompany">
+            <AddProductItem :go-to-add-product-view="goToAddProductView"/>
           </div>
           <div class="grid-item" v-for="product in products" :key="product.id">
             <product-item
@@ -39,10 +39,11 @@
 import router from "@/router";
 import ProductItem from "@/components/ProductItem.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import AddProductItem from "@/views/AddProductItem.vue";
 
 export default {
   name: "ShopView",
-  components: {FontAwesomeIcon, ProductItem: ProductItem},
+  components: {AddProductItem, FontAwesomeIcon, ProductItem: ProductItem},
 
   props: {
     isCompany: Boolean,
@@ -126,6 +127,9 @@ export default {
       sessionStorage.clear()
       this.$emit('event-update-nav-menu')
       router.push({name: 'homeRoute'})
+    },
+    goToAddProductView() {
+      router.push({name: 'addNewProductRoute'})
     },
 
   },

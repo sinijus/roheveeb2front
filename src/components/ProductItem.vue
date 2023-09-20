@@ -116,7 +116,10 @@ export default {
     goToEditView() {
       router.push({name: 'addNewProductRoute'})
     },
+
   },
+  mounted() {
+  }
 }
 </script>
 
