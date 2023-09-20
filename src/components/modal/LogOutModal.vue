@@ -35,9 +35,11 @@ export default {
       this.isLoggedIn = false
       this.isAdmin = false
       this.isCompany = false
+      this.$refs.modalRef.closeModal();
+      this.$emit('event-update-nav-menu')
       router.push({name: 'homeRoute'})
 
-      this.$refs.modalRef.closeModal();
+
     },
   },
 }

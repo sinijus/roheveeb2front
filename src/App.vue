@@ -1,5 +1,5 @@
 <template>
-  <LogOutModal ref="logOutModalRef"/>
+  <LogOutModal @event-update-nav-menu="updateNavMenu" ref="logOutModalRef"/>
 
   <nav>
     <template v-if="isLoggedIn">
