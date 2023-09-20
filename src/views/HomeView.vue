@@ -2,7 +2,7 @@
   <div class="page">
     <div class="row">
       <div class="col justify-content-right">
-        <div> {{ introductionText }}</div>
+        <div class="product-item"> {{ introductionText }}</div>
       </div>
       <div class="col">
         <LoginRegisterBox @event-udpate-nav-menu="handleNavMenuUpdate()"/>
@@ -36,4 +36,6 @@ export default {
 }
 
 </script>
+
+
 
