@@ -1,6 +1,6 @@
 <template>
     <select v-model="selectedTypeId" @change="emitSelectedTypeId" class="form-select">
-      <option selected :value="0">Kartul</option>
+      <option selected :value="0">-- vali tüüp --</option>
       <option v-for="type in types" :value="type.typeId" :key="type.typeId">{{type.typeName }}
       </option>
     </select>
