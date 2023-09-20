@@ -25,6 +25,25 @@ body {
     border: 1px solid rgba(209, 213, 219, 0.3);
 }
 
+.introduction-text {
+    /* Other styles */
+    position: relative;
+    text-align: left;
+    padding: 50px;
+    width: 100%;
+    max-width: 800px;
+    /*max-height: 400px;*/
+    font-weight: bold;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 6px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
 
 .form-select {
     width: 300px; /* Adjust the height as needed */
@@ -81,4 +100,12 @@ body {
     display: flex;
     justify-content: space-between; /* Adjust the spacing as needed */
     align-items: center;
+}
+
+.adjustable-image {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
 }
