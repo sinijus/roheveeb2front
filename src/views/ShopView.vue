@@ -6,7 +6,7 @@
           <h1>E-pood</h1>
         </div>
         <div class="col">
-          <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="goToCart" type="button" size="xl"/>
+          <font-awesome-icon :icon="['fas', 'cart-shopping']" style="margin-right: 10px;" @click="goToCart" type="button" size="xl"/>
           {{ orderInfo.numberOfProducts }}
 
           <font-awesome-icon :icon="['fas', 'user']" size="xl" @click="goToProfile" type="button"
@@ -88,7 +88,15 @@ export default {
 
   methods: {
     goToProfile() {
-      router.push({name: 'profileRoute'})
+      let roleName = sessionStorage.getItem('roleName');
+
+      if (roleName === 'company') {
+        router.push({name: 'profileCompanyRoute'});
+      }else {
+        router.push({name: 'profileCustomerRoute'})
+      }
+
+
     },
     goToCart() {
       router.push({name: 'cartRoute'})
