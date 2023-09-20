@@ -1,7 +1,7 @@
 <template>
   <div @keydown.enter="login()">
     <ModalRegister ref="modalRegisterRef"/>
-    <div class="row justify-content-evenly"  >
+    <div class="row justify-content-evenly">
       <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
@@ -84,7 +84,7 @@ export default {
       errorResponse: {
         message: '',
         errorCode: 0
-      }
+      },
     }
   },
   methods: {
@@ -114,20 +114,19 @@ export default {
         this.loginResponse = response.data
         sessionStorage.setItem('userId', this.loginResponse.userId)
         sessionStorage.setItem('roleName', this.loginResponse.roleName)
-        if (sessionStorage.getItem('roleName') === COMPANY) {
-
-        }
+        sessionStorage.setItem('companyId', '0')
         this.$emit('event-update-nav-menu');
         router.push({name: 'shopRoute'})
       }).catch(error => {
-        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
         this.errorResponse = error.response.data
         alert(this.errorResponse.message)
         if (this.errorResponse.errorCode !== INCORRECT_CREDENTIALS) {
           router.push({name: 'errorRoute'})
         }
       })
-    }
+    },
+
+
   }
 }
 </script>

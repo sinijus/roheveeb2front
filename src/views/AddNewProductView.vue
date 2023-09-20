@@ -134,33 +134,20 @@ export default {
     }
   },
   methods: {
-    addNewProduct() {
-      this.$http.post("/product", this.addNewProductRequest
-      ).then(response => {
-        alert('toode lisatud')
-        //todo: tühjenda väljad
-      }).catch(error => {
-        this.errorResponseAddNewProduct = error.response.data
-        if (this.errorResponseAddNewProduct.errorCode === 1111) {
-          alert(PRODUCT_TYPE_NAME_UNAVAILABLE);
-        }
-        alert('addProduct errorblock')
-      })
-    },
-
     goToShop() {
       router.push({name: 'shopRoute'})
     },
+
     openAddType() {
       this.$refs.addTypeRef.$refs.modalRef.openModal()
     },
     setAndAddProductRequestImageData(imageDataBase64) {
       this.addNewProductRequest.imageData = imageDataBase64
     },
-
     setTypeId(typeId) {
       this.addNewProductRequest.typeId = typeId;
     },
+
     setUnitId(unitId) {
       this.addNewProductRequest.measureUnitId = unitId;
     },
@@ -172,14 +159,27 @@ export default {
       }
     },
     areInputFieldsFilled() {
-      return this.addNewProductRequest.price != '' && this.addNewProductRequest.typeId != '' &&
-          this.addNewProductRequest.productName != '' && this.addNewProductRequest.measureUnitId != '' &&
-          this.addNewProductRequest.companyId != '' && this.addNewProductRequest.stockBalance != ''
+      return this.addNewProductRequest.price !== 0 && this.addNewProductRequest.typeId !== 0 &&
+          this.addNewProductRequest.productName !== '' && this.addNewProductRequest.measureUnitId !== 0 &&
+          this.addNewProductRequest.companyId !== 0 && this.addNewProductRequest.stockBalance !== 0
           // &&      this.addNewProductRequest.imageData != ''
+    },
+    addNewProduct() {
+      this.$http.post('/product', this.addNewProductRequest
+      ).then(response => {
+        alert('toode lisatud')
+        //todo: tühjenda väljad
+      }).catch(error => {
+        this.errorResponseAddNewProduct = error.response.data
+        if (this.errorResponseAddNewProduct.errorCode === 1111) {
+          alert(PRODUCT_TYPE_NAME_UNAVAILABLE);
+        }
+        alert('addProduct errorblock')
+      })
     },
   },
   mounted() {
-    this.addNewProductRequest.companyId = sessionStorage.getItem('userId')
+    this.addNewProductRequest.companyId = sessionStorage.getItem('companyId')
   }
 
 }

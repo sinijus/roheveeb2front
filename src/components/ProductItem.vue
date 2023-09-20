@@ -70,7 +70,7 @@ export default {
   methods: {
     addProductToCart() {
 
-      this.addProductBody.orderId = this.orderId
+      this.addProductBody.orderId = sessionStorage.getItem('orderId')
       this.addProductBody.productId = this.product.productId
 
       alert('orderId: ' + this.addProductBody.orderId + '\n productId: ' + this.addProductBody.productId + '\n amount: ' + this.addProductBody.productAmount)

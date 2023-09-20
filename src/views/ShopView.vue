@@ -109,12 +109,24 @@ export default {
     updateNavMenu() {
       this.$emit('event-update-nav-menu')
     },
+    getCompanyId() {
+      this.$http.get("/company", {
+            params: {
+              userId: sessionStorage.getItem('userId'),
+            }
+          }
+      ).then(response => {
+        sessionStorage.setItem('companyId', response.data.toString())
+      }).catch(error => {
+      })
+    },
 
   },
   mounted() {
     this.updateNavMenu()
   },
   beforeMount() {
+    this.getCompanyId()
     this.findAllProducts()
     this.$emit('event-update-nav-menu')
   }
