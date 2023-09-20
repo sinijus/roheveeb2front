@@ -11,7 +11,8 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Toote nimi">
+              <input type="text" class="form-control" placeholder="Toote nimi"
+                     v-model="addNewProductRequest.productName">
             </div>
           </div>
         </div>
@@ -20,16 +21,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <categoriesDropdown class="form-control"/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col col-3">
-          <div class="input-group mb-3">
-            <div class="input-group">
-              <typesDropdown class="form-control"/>
+              <typesDropdown ref="types" class="form-control" @update-selected-type-id-event="setTypeId"/>
               <button type="button" class="btn btn-outline-light" @click="openAddType()">Lisa</button>
             </div>
           </div>
@@ -39,7 +31,17 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <MeasureUnitsDropdown class="form-control"/>
+              <categoriesDropdown ref="category" class="form-control"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <MeasureUnitsDropdown ref="measureUnit" class="form-control"
+                                    @update-selected-measure-unit-id-event="setUnitId"/>
             </div>
           </div>
         </div>
@@ -49,29 +51,29 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="number" class="form-control" placeholder="Hind">
+              <input type="number" class="form-control" placeholder="Hind" v-model="addNewProductRequest.price">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="Kogus" v-model="addNewProductRequest.stockBalance">
             </div>
           </div>
         </div>
       </div>
 
       <div class="row justify-content-center">
-        <div class="col col-3">
-          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>
-        </div>
-        <AddNewProductImage/>
-        <div class="col col-3">
-          <ImageInput/>
-        </div>
+        <AddNewProductImage ref="addImage" @event-emit-base64="setAddNewProductRequestImageData"/>
       </div>
       <div class="row justify-content-center">
         <div class="col col-3">
+          <button type="button" class="btn btn-success" @click="validateAndAddNewProduct">Kinnita</button>
         </div>
-        <div class="col col-3">
-          <button type="button" class="btn btn-success" @click="goToShop">Kinnita</button>
-        </div>
-        <div class="col col-3">
-        </div>
+
       </div>
     </div>
   </div>
@@ -87,6 +89,7 @@ import router from "@/router";
 import ImageInput from "@/views/ImageInput.vue";
 import AddType from "@/components/modal/AddType.vue";
 import AddNewProductImage from "@/components/AddNewProductImage.vue";
+import {FILL_MANDATORY_FIELDS, PRODUCT_TYPE_NAME_UNAVAILABLE} from "@/assets/script/error.message";
 
 export default {
   name: "AddNewProductView",
@@ -124,13 +127,10 @@ export default {
       router.push({name: 'shopRoute'})
     },
     setAddNewProductRequestImageData(imageDataBase64) {
-      this.newProduct.imageData = imageDataBase64
+      this.addNewProductRequest.imageData = imageDataBase64
     },
     openAddType() {
       this.$refs.addTypeRef.$refs.modalRef.openModal()
-    },
-    setAndAddProductRequestImageData(imageDataBase64) {
-      this.addNewProductRequest.imageData = imageDataBase64
     },
     setTypeId(typeId) {
       this.addNewProductRequest.typeId = typeId;
@@ -149,13 +149,13 @@ export default {
       return this.addNewProductRequest.price !== 0 && this.addNewProductRequest.typeId !== 0 &&
           this.addNewProductRequest.productName !== '' && this.addNewProductRequest.measureUnitId !== 0 &&
           this.addNewProductRequest.companyId !== 0 && this.addNewProductRequest.stockBalance !== 0
-      // &&      this.addNewProductRequest.imageData != ''
+          && this.addNewProductRequest.imageData !== ''
     },
     addNewProduct() {
       this.$http.post('/product', this.addNewProductRequest
       ).then(response => {
         alert('toode lisatud')
-        //todo: tühjenda väljad
+        this.initializeFields();
       }).catch(error => {
         this.errorResponseAddNewProduct = error.response.data
         if (this.errorResponseAddNewProduct.errorCode === 1111) {
@@ -163,6 +163,14 @@ export default {
         }
         alert('addProduct errorblock')
       })
+    },
+    initializeFields: function () {
+      this.addNewProductRequest.productName = ''
+      this.addNewProductRequest.price = 0
+      this.addNewProductRequest.stockBalance = 0
+      this.$refs.types.selectedTypeId = 0
+      this.$refs.measureUnit.selectedMeasureId = 0
+      this.$refs.addImage.imageDataBase64 = ''
     },
   },
   mounted() {

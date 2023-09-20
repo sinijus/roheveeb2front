@@ -34,6 +34,9 @@ export default {
     emitSelectedTypeId() {
       this.$emit('update-selected-type-id-event', this.selectedTypeId)
     },
+    initializeTypes() {
+
+    },
   },
   beforeMount() {
     this.getTypes()
