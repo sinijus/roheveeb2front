@@ -4,7 +4,7 @@
     <div>
 
     </div>
-    <img src="../../public/eggiehungry.gif">
+    <img style="width: 500px; height: 400px" src="../../public/eggiehungry.gif">
   </div>
 </template>
 <script>
