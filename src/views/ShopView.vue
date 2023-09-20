@@ -11,11 +11,6 @@
           {{ orderInfo.numberOfProducts }}
           </div>
 
-          <template v-if="isCompany">
-            <v-font-awesome-icon :icon="['fas', 'cart-shopping']" style="margin-right: 10px;" @click="goToCart" type="button" size="xl"/>
-            {{ orderInfo.numberOfProducts }}
-          </template>
-
           <font-awesome-icon :icon="['fas', 'user']" size="xl" @click="goToProfile" type="button"
                              style="margin-right: 10px;"/>
           <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" size="xl" @click="logOut" type="button" />
