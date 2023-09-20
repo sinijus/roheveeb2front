@@ -85,6 +85,9 @@
     <a href="/" class="btn btn-outline-success m-2">Pealehele</a>
     <button type="button" class="btn btn-success" @click="goToShopView" id="tagasiButton">Registreeri</button>
   </div>
+  <br>
+  <br>
+  <br>
 </template>
 
 <script>
