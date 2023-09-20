@@ -86,10 +86,12 @@ import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 import router from "@/router";
 import ImageInput from "@/views/ImageInput.vue";
 import AddType from "@/components/modal/AddType.vue";
+import AddNewProductImage from "@/components/AddNewProductImage.vue";
 
 export default {
   name: "AddNewProductView",
   components: {
+    AddNewProductImage,
     AddType,
     ImageInput, MeasureUnitsDropdown, TypesDropdown, CategoriesDropdown
   },

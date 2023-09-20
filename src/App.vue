@@ -1,4 +1,5 @@
 <template>
+  <LogOutModal ref="logOutModalRef"/>
 
   <nav>
     <template v-if="isLoggedIn">
@@ -10,49 +11,21 @@
 
       <font-awesome-icon :icon="['fas', 'user']" size="xl" @click="goToProfile" type="button"
                          style="margin-right: 10px;"/>
-      <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" size="xl" @click="logOut" type="button"/>
+      <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" size="xl" @click="openLogOutModal" type="button"/>
     </template>
   </nav>
-  <div>
-
-
-  </div>
-
   <router-view @event-update-nav-menu="updateNavMenu()" :is-company="isCompany" :is-admin="isAdmin"/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-  margin-left: 10px;
-
-
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  margin-right: 20px
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
 <script>
 
 import {ADMIN, COMPANY} from "@/assets/script/role";
 import router from "@/router";
+import LogOutModal from "@/components/modal/LogOutModal.vue";
 
 export default {
+  components: {LogOutModal},
 
   data() {
     return {
@@ -89,14 +62,11 @@ export default {
         router.push({name: 'profileCustomerRoute'})
       }
     },
-
-    logOut() {
-      sessionStorage.clear()
-      this.isLoggedIn = false
-      this.isAdmin = false
-      this.isCompany = false
-      router.push({name: 'homeRoute'})
+    openLogOutModal() {
+      this.$refs.logOutModalRef.$refs.modalRef.openModal()
     },
+
+
 
     getPendingOrderInfo() {
       this.$http.get("/order/pending", {
@@ -120,3 +90,31 @@ export default {
 }
 
 </script>
+
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  padding: 30px;
+  margin-left: 10px;
+
+
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-right: 20px
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
