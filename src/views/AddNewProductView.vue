@@ -21,7 +21,9 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <typesDropdown ref="types" class="form-control" @update-selected-type-id-event="setTypeId"/>
+              <typesDropdown ref="types" class="form-control"
+                             @update-selected-type-id-event="setTypeId"
+                             @update-type-category-id-event="updateCategoryIdDropdown"/>
               <button type="button" class="btn btn-outline-light" @click="openAddType()">Lisa</button>
             </div>
           </div>
@@ -51,7 +53,8 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="number" class="form-control" placeholder="Hind" v-model="addNewProductRequest.price">
+              <input type="number" class="form-control" placeholder="Hind" min="1"
+                     v-model="addNewProductRequest.price">
             </div>
           </div>
         </div>
@@ -60,7 +63,8 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="number" class="form-control" placeholder="Kogus" v-model="addNewProductRequest.stockBalance">
+              <input type="number" class="form-control" placeholder="Kogus" min="1"
+                     v-model="addNewProductRequest.stockBalance">
             </div>
           </div>
         </div>
@@ -171,6 +175,9 @@ export default {
       this.$refs.types.selectedTypeId = 0
       this.$refs.measureUnit.selectedMeasureId = 0
       this.$refs.addImage.imageDataBase64 = ''
+    },
+    updateCategoryIdDropdown(categoryId) {
+      this.$refs.category.selectedCategoryId = categoryId
     },
   },
   mounted() {
