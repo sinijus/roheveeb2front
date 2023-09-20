@@ -27,7 +27,7 @@ form {
 
 <template>
   <div>
-    <img alt="Vue logo" src="../assets/logo_roheveeb.png" height="200">
+    <img src="https://media.voog.com/0000/0048/2898/photos/porgand.png" height="200">
     </div>
   <div>
     <table class="table table-bordered"
