@@ -1,72 +1,79 @@
+<template>
+  <div>
+    <div class="container text-center">
 
-  <template>
-    <div class="ProfileCompany">
-      <div class="container text-center">
-
-        <div class="row">
-          <div class="col">
-            <h1>Profiil</h1>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col col-3">
-            <input v-model="text" type="text" class="form-control" placeholder="Ettevõtte nimi">
-          </div>
-          <div class="col col-3">
-            <input v-model="text" type="text" class="form-control" placeholder="Registrikood">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-6">
-            <input v-model="Bank" type="number" class="form-control" placeholder="IBAN">
-          </div>
-          <div class="col">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-3">
-            <input v-model="tel" type="tel" class="form-control" placeholder="Telefoni number">
-          </div>
-          <div class="col">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-6">
-            <input v-model="aadress" type="text" class="form-control" placeholder="Aadress">
-          </div>
-          <div class="col">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-3">
-            <input v-model="text" type="text" class="form-control" placeholder="Maakond">
-          </div>
-          <div class="col col-3">
-            <input v-model="Bank" type="number" class="form-control" placeholder="Postiindeks">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-6">
-            <input v-model="Bank" type="text" class="form-control" placeholder="Asukoha pikkus, laius">
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-secondary" >Muuda logo</button>
+      <div class="row justify-content-center">
+        <div class="col col-4">
+          <div class="row mb-5">
+            <h1>Firma profiil</h1>
           </div>
 
-        </div>
-        <div class="row">
-          <div class="col">
-            <button type="button" class="btn btn-secondary" @click="goToHomeView" >Tagasi</button>
+          <div class="row">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Firma nimi</span>
+              <input type="text" class="form-control">
+            </div>
           </div>
-          <div class="col">
-            <button type="button" class="btn btn-success" @click="goToShopView">Salvesta muudatused</button>
+
+          <div class="row">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Registrikood</span>
+              <input type="number" class="form-control">
+            </div>
           </div>
+
+          <div class="row">
+            <div class="input-group mb-3">
+              <span class="input-group-text">IBAN</span>
+              <input type="number" class="form-control">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Telefoninumber</span>
+              <input type="number" class="form-control">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Aadress</span>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group mb-3">
+              <select v-model="selectedCountyId" @change="emitSelectedCountyId" class="form-select">
+                <option selected :value="0">Maakonnad</option>
+                <option class="form-control" v-for="county in counties" :value="county.countyId" :key="county.countyId">
+                  {{ county.countyName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Postiindeks</span>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-  </template>
+  </div>
+
+  <div>
+    <a href="/shop" class="btn btn-outline-success m-2" @click="goToShopView">Tagasi poe vaatesse</a>
+    <button type="button" class="btn btn-success" @click="goToShopView">Salvesta muudatused</button>
+  </div>
+  <br>
+  <br>
+  <br>
+</template>
 
 
 <script>
@@ -75,14 +82,38 @@ import router from "@/router";
 export default {
   name: "ProfileCompany",
 
+  data() {
+    return {
+      selectedCountyId: 0,
+      counties: [
+        {
+          countyId: 0,
+          countyName: ''
+        }
+      ],
+    }
+  },
   methods: {
 
     goToShopView() {
       router.push({name: 'shopRoute'})
     },
-    goToHomeView() {
-      router.push({name: 'homeRoute'})
-    }
+
+    getCounties() {
+      this.$http.get("/counties")
+          .then(response => {
+            this.counties = response.data
+          })
+          .catch(error => {
+            router.push({name: 'errorRoute'})
+          })
+    },
+    emitSelectedCountyId() {
+      this.$emit('update-selected-county-id-event', this.selectedCountyId)
+    },
+  },
+  beforeMount() {
+    this.getCounties()
   }
 }
 
