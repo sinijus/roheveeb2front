@@ -8,10 +8,9 @@
         <LoginRegisterBox @event-udpate-nav-menu="handleNavMenuUpdate()"/>
       </div>
     </div>
-    <div class="adjustable-image">
-      <img src="https://media.voog.com/0000/0048/2898/photos/porgand.png">
     </div>
-    </div>
+
+   <div class="adjustable-image"><img src="https://media.voog.com/0000/0048/2898/photos/porgand.png">"></div>
 
 </template>
 
