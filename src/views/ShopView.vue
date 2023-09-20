@@ -39,7 +39,7 @@
 import router from "@/router";
 import ProductItem from "@/components/ProductItem.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import AddProductItem from "@/views/AddProductItem.vue";
+import AddProductItem from "@/components/AddProductItem.vue";
 
 export default {
   name: "ShopView",

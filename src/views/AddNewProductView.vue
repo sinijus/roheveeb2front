@@ -11,7 +11,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Toote nimi">
+              <input type="text" class="form-control" placeholder="Toote nimi" v-model="addNewProductRequest.productName">
             </div>
           </div>
         </div>
@@ -20,6 +20,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
+<!--              todo: catgories dropdowni on vaja ainult uue tüübi lisamisel, vanade puhul on info juba olemas-->
               <categoriesDropdown class="form-control"/>
             </div>
           </div>
@@ -29,7 +30,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <typesDropdown class="form-control"/>
+              <typesDropdown class="form-control" @update-selected-type-id-event="setTypeId"/>
               <button type="button" class="btn btn-outline-light" @click="openAddType()">Lisa</button>
             </div>
           </div>
@@ -39,7 +40,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <MeasureUnitsDropdown class="form-control"/>
+              <MeasureUnitsDropdown class="form-control" @update-selected-measure-unit-id-event="setUnitId"/>
             </div>
           </div>
         </div>
@@ -49,7 +50,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="number" class="form-control" placeholder="Hind">
+              <input type="number" class="form-control" placeholder="Hind" v-model="addNewProductRequest.price">
             </div>
           </div>
         </div>
@@ -57,9 +58,10 @@
 
       <div class="row justify-content-center">
         <div class="col col-3">
-          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>
+<!--          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>-->
+
         </div>
-        <AddNewProductImage/>
+        <AddNewProductImage @event-emit-base64="setAndAddProductRequestImageData"/>
         <div class="col col-3">
           <ImageInput/>
         </div>
@@ -68,7 +70,7 @@
         <div class="col col-3">
         </div>
         <div class="col col-3">
-          <button type="button" class="btn btn-success" @click="goToShop">Kinnita</button>
+          <button type="button" class="btn btn-success" @click="validateAndAddNewProduct">Kinnita</button>
         </div>
         <div class="col col-3">
         </div>
@@ -86,10 +88,13 @@ import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 import router from "@/router";
 import ImageInput from "@/views/ImageInput.vue";
 import AddType from "@/components/modal/AddType.vue";
+import {FILL_MANDATORY_FIELDS, PRODUCT_TYPE_NAME_UNAVAILABLE} from "@/assets/script/error.message";
+import AddNewProductImage from "@/components/AddNewProductImage.vue";
 
 export default {
   name: "AddNewProductView",
   components: {
+    AddNewProductImage,
     AddType,
     ImageInput, MeasureUnitsDropdown, TypesDropdown, CategoriesDropdown
   },
@@ -101,19 +106,68 @@ export default {
           categoryId: 0,
           categoryName: ''
         }
-      ]
+      ],
+      addNewProductRequest: {
+        companyId: 0,
+        typeId: 0,
+        measureUnitId: 0,
+        imageData: '',
+        productName: '',
+        price: 0,
+        stockBalance: 0
+      },
+      errorResponseAddNewProduct: {
+        message: '',
+        errorCode: 0
+      }
+
     }
   },
   methods: {
+    addNewProduct() {
+      this.$http.post("/product", this.addNewProductRequest
+      ).then(response => {
+        alert('toode lisatud')
+        //todo: tühjenda väljad
+      }).catch(error => {
+        this.errorResponseAddNewProduct = error.response.data
+        if (this.errorResponseAddNewProduct.errorCode === 1111) {
+          alert(PRODUCT_TYPE_NAME_UNAVAILABLE);
+        }
+        alert('addProduct errorblock')
+      })
+    },
+    areInputFieldsFilled() {
+      return this.addNewProductRequest.price != '' && this.addNewProductRequest.typeId != '' &&
+          this.addNewProductRequest.productName != '' && this.addNewProductRequest.measureUnitId != '' &&
+          this.addNewProductRequest.companyId != '' && this.addNewProductRequest.stockBalance != '' &&
+          this.addNewProductRequest.imageData != ''
+    },
     goToShop() {
       router.push({name: 'shopRoute'})
     },
-    setAddNewProductRequestImageData(imageDataBase64) {
-      this.newProduct.imageData = imageDataBase64
-    },
     openAddType() {
       this.$refs.addTypeRef.$refs.modalRef.openModal()
-  },
+    },
+    setAndAddProductRequestImageData(imageDataBase64) {
+      this.addNewProductRequest.imageData = imageDataBase64
+    },
+
+    setTypeId(typeId) {
+      this.addNewProductRequest.typeId = typeId;
+    },
+    setUnitId(unitId) {
+      this.addNewProductRequest.measureUnitId = unitId;
+    },
+    validateAndAddNewProduct() {
+      if (this.areInputFieldsFilled()) {
+        this.addNewProduct()
+      } else {
+        alert(FILL_MANDATORY_FIELDS)
+      }
+      //validate all fields are proper and filled
+    },
+
 
   }
 
