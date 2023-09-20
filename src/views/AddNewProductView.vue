@@ -11,8 +11,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Toote nimi"
-                     v-model="addNewProductRequest.productName">
+              <input type="text" class="form-control" placeholder="Toote nimi">
             </div>
           </div>
         </div>
@@ -21,7 +20,6 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <!--              todo: catgories dropdowni on vaja ainult uue tüübi lisamisel, vanade puhul on info juba olemas-->
               <categoriesDropdown class="form-control"/>
             </div>
           </div>
@@ -31,7 +29,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <typesDropdown class="form-control" @update-selected-type-id-event="setTypeId"/>
+              <typesDropdown class="form-control"/>
               <button type="button" class="btn btn-outline-light" @click="openAddType()">Lisa</button>
             </div>
           </div>
@@ -41,7 +39,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <MeasureUnitsDropdown class="form-control" @update-selected-measure-unit-id-event="setUnitId"/>
+              <MeasureUnitsDropdown class="form-control"/>
             </div>
           </div>
         </div>
@@ -51,36 +49,26 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="number" class="form-control" placeholder="Hind" v-model="addNewProductRequest.price">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col col-3">
-          <div class="input-group mb-3">
-            <div class="input-group">
-              <input type="number" class="form-control" placeholder="Kogus" v-model="addNewProductRequest.stockBalance">
+              <input type="number" class="form-control" placeholder="Hind">
             </div>
           </div>
         </div>
       </div>
 
       <div class="row justify-content-center">
-<!--        <div class="col col-3">-->
-<!--          &lt;!&ndash;          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>&ndash;&gt;-->
-
-<!--        </div>-->
-        <AddNewProductImage @event-emit-base64="setAndAddProductRequestImageData"/>
-<!--        <div class="col col-3">-->
-<!--                    <ImageInput/>-->
-<!--        </div>-->
+        <div class="col col-3">
+          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>
+        </div>
+        <AddNewProductImage/>
+        <div class="col col-3">
+          <ImageInput/>
+        </div>
       </div>
       <div class="row justify-content-center">
         <div class="col col-3">
         </div>
         <div class="col col-3">
-          <button type="button" class="btn btn-success" @click="validateAndAddNewProduct">Kinnita</button>
+          <button type="button" class="btn btn-success" @click="goToShop">Kinnita</button>
         </div>
         <div class="col col-3">
         </div>
@@ -98,7 +86,6 @@ import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
 import router from "@/router";
 import ImageInput from "@/views/ImageInput.vue";
 import AddType from "@/components/modal/AddType.vue";
-import {FILL_MANDATORY_FIELDS, PRODUCT_TYPE_NAME_UNAVAILABLE} from "@/assets/script/error.message";
 import AddNewProductImage from "@/components/AddNewProductImage.vue";
 
 export default {
@@ -130,14 +117,15 @@ export default {
         message: '',
         errorCode: 0
       }
-
     }
   },
   methods: {
     goToShop() {
       router.push({name: 'shopRoute'})
     },
-
+    setAddNewProductRequestImageData(imageDataBase64) {
+      this.newProduct.imageData = imageDataBase64
+    },
     openAddType() {
       this.$refs.addTypeRef.$refs.modalRef.openModal()
     },
@@ -147,7 +135,6 @@ export default {
     setTypeId(typeId) {
       this.addNewProductRequest.typeId = typeId;
     },
-
     setUnitId(unitId) {
       this.addNewProductRequest.measureUnitId = unitId;
     },
@@ -162,7 +149,7 @@ export default {
       return this.addNewProductRequest.price !== 0 && this.addNewProductRequest.typeId !== 0 &&
           this.addNewProductRequest.productName !== '' && this.addNewProductRequest.measureUnitId !== 0 &&
           this.addNewProductRequest.companyId !== 0 && this.addNewProductRequest.stockBalance !== 0
-          // &&      this.addNewProductRequest.imageData != ''
+      // &&      this.addNewProductRequest.imageData != ''
     },
     addNewProduct() {
       this.$http.post('/product', this.addNewProductRequest
@@ -181,6 +168,7 @@ export default {
   mounted() {
     this.addNewProductRequest.companyId = sessionStorage.getItem('companyId')
   }
+
 
 }
 
