@@ -11,7 +11,8 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Toote nimi" v-model="addNewProductRequest.productName">
+              <input type="text" class="form-control" placeholder="Toote nimi"
+                     v-model="addNewProductRequest.productName">
             </div>
           </div>
         </div>
@@ -20,7 +21,7 @@
         <div class="col col-3">
           <div class="input-group mb-3">
             <div class="input-group">
-<!--              todo: catgories dropdowni on vaja ainult uue tüübi lisamisel, vanade puhul on info juba olemas-->
+              <!--              todo: catgories dropdowni on vaja ainult uue tüübi lisamisel, vanade puhul on info juba olemas-->
               <categoriesDropdown class="form-control"/>
             </div>
           </div>
@@ -55,16 +56,25 @@
           </div>
         </div>
       </div>
-
       <div class="row justify-content-center">
         <div class="col col-3">
-<!--          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>-->
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="Kogus" v-model="addNewProductRequest.stockBalance">
+            </div>
+          </div>
+        </div>
+      </div>
 
-        </div>
+      <div class="row justify-content-center">
+<!--        <div class="col col-3">-->
+<!--          &lt;!&ndash;          <button type="button" class="btn btn-outline-light m-1">Lisa toote pilt</button>&ndash;&gt;-->
+
+<!--        </div>-->
         <AddNewProductImage @event-emit-base64="setAndAddProductRequestImageData"/>
-        <div class="col col-3">
-          <ImageInput/>
-        </div>
+<!--        <div class="col col-3">-->
+<!--                    <ImageInput/>-->
+<!--        </div>-->
       </div>
       <div class="row justify-content-center">
         <div class="col col-3">
@@ -137,12 +147,7 @@ export default {
         alert('addProduct errorblock')
       })
     },
-    areInputFieldsFilled() {
-      return this.addNewProductRequest.price != '' && this.addNewProductRequest.typeId != '' &&
-          this.addNewProductRequest.productName != '' && this.addNewProductRequest.measureUnitId != '' &&
-          this.addNewProductRequest.companyId != '' && this.addNewProductRequest.stockBalance != '' &&
-          this.addNewProductRequest.imageData != ''
-    },
+
     goToShop() {
       router.push({name: 'shopRoute'})
     },
@@ -165,10 +170,16 @@ export default {
       } else {
         alert(FILL_MANDATORY_FIELDS)
       }
-      //validate all fields are proper and filled
     },
-
-
+    areInputFieldsFilled() {
+      return this.addNewProductRequest.price != '' && this.addNewProductRequest.typeId != '' &&
+          this.addNewProductRequest.productName != '' && this.addNewProductRequest.measureUnitId != '' &&
+          this.addNewProductRequest.companyId != '' && this.addNewProductRequest.stockBalance != ''
+          // &&      this.addNewProductRequest.imageData != ''
+    },
+  },
+  mounted() {
+    this.addNewProductRequest.companyId = sessionStorage.getItem('userId')
   }
 
 }

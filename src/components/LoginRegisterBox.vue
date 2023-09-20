@@ -67,6 +67,7 @@ import {INCORRECT_CREDENTIALS} from "@/assets/script/error.code";
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/error.message";
 import ModalRegister from "@/components/modal/ModalRegister.vue";
 import MeasureUnitsDropdown from "@/components/MeasureUnitsDropdown.vue";
+import {COMPANY} from "@/assets/script/role";
 
 export default {
   name: 'LoginRegisterBox',
@@ -113,7 +114,10 @@ export default {
         this.loginResponse = response.data
         sessionStorage.setItem('userId', this.loginResponse.userId)
         sessionStorage.setItem('roleName', this.loginResponse.roleName)
-        this.$emit('event-update-nav-menu')
+        if (sessionStorage.getItem('roleName') === COMPANY) {
+
+        }
+        this.$emit('event-update-nav-menu');
         router.push({name: 'shopRoute'})
       }).catch(error => {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
