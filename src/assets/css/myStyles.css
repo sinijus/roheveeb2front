@@ -76,3 +76,9 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.image-row {
+    display: flex;
+    justify-content: space-between; /* Adjust the spacing as needed */
+    align-items: center;
+}
