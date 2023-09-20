@@ -1,7 +1,7 @@
 <template>
   <div class="product-item" style="justify-content: center" @click="goToAddProductView" type="button">
     <font-awesome-icon  :icon="['fas', 'plus']"  size="2xl"/>
-    <div>
+    <div class="row justify-content-center">
       Lisa uus toode...
     </div>
   </div>
