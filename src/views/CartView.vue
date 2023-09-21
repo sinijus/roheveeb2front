@@ -21,7 +21,7 @@
 
       </tr>
 
-      <tr v-for="(cartProduct, index) in this.cartProducts">
+      <tr v-for="(cartProduct, index) in this.cartResponse.cartProducts">
         <td colspan="2"> {{ cartProduct.companyName }}</td>
         <td colspan="2" class="table-active"> {{ cartProduct.productName }}</td>
         <td colspan="2" class="table-active"> {{ cartProduct.measureUnitName }}</td>
@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td colspan="14">
-          Summa kokku: {{ cartSum }} €
+          Summa kokku: {{ cartResponse.grandTotalSum }} €
         </td>
       </tr>
 
@@ -99,31 +99,20 @@ import {NO_PRODUCTS_IN_CART} from "@/assets/script/error.message";
 export default {
   data() {
     return {
-      cartProducts: [
-        {
-          companyId: 0,
-          companyLocationId: 0,
-          companyLocationCountyId: 0,
-          companyLocationCountyName: '',
-          companyLocationAddress: '',
-          companyLogoImageData: '',
-          companyName: '',
-          companyPhoneNumber: '',
-          companyRegisterCode: '',
-          companyIban: '',
-          typeId: 0,
-          typeCategoryId: 0,
-          typeCategoryName: '',
-          typeName: '',
-          measureUnitId: 0,
-          measureUnitName: '',
-          orderProductId: 0,
-          productId: 0,
-          productName: '',
-          price: 0,
-          amount: 0
-        }
-      ],
+      cartResponse: {
+        grandTotalSum: 0,
+        cartProducts: [
+          {
+            orderProductId: 0,
+            companyName: '',
+            productName: '',
+            measureUnitName: '',
+            amount: 0,
+            price: 0,
+            lineTotal: 0
+          }
+        ]
+      },
       errorCartProducts: {
         message: '',
         errorCode: 0
@@ -142,7 +131,6 @@ export default {
           bankImageData: ''
         }
       ],
-      cartSum: 0,
 
     }
   },
@@ -154,7 +142,8 @@ export default {
             }
           }
       ).then(response => {
-        this.cartProducts = response.data
+        this.cartResponse = response.data
+        this.calculateAndSetCartSum()
       }).catch(error => {
         this.errorCartProducts = error.response.data
         if (this.errorCartProducts.errorCode === 2222) {
@@ -198,12 +187,13 @@ export default {
         alert('deleteProductFromCart Error')
       })
     },
-    calculateCartSum() {
-      let total = 0;
-      for (const cartProduct of this.cartProducts) {
-        total = total + (cartProduct.price * cartProduct.amount)
+    calculateAndSetCartSum() {
+      console.log("OLEN SIIN")
+      let grandTotalSum = 0;
+      for (const cartProduct of this.cartResponse.cartProducts) {
+        grandTotalSum = grandTotalSum + cartProduct.lineTotal
       }
-      this.cartSum = total;
+      this.cartResponse.grandTotalSum = grandTotalSum;
     },
   },
 
@@ -211,7 +201,6 @@ export default {
     this.getCartProducts()
     this.getTransportOptions()
     this.getPaymentOptions()
-    this.calculateCartSum()
   }
 }
 
