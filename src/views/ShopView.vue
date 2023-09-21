@@ -5,6 +5,16 @@
         <div class="col">
           <h1>E-pood</h1>
         </div>
+        <div class="col">
+          <div v-if="isCompany">
+          <v-font-awesome-icon :icon="['fas', 'cart-shopping']" style="margin-right: 10px;" @click="goToCart" type="button" size="xl"/>
+          {{ orderInfo.numberOfProducts }}
+          </div>
+
+          <font-awesome-icon :icon="['fas', 'user']" size="xl" @click="goToProfile" type="button"
+                             style="margin-right: 10px;"/>
+          <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" size="xl" @click="logOut" type="button" />
+        </div>
       </div>
 
       <div v-if="showProducts">
@@ -15,10 +25,9 @@
           <div class="grid-item" v-for="product in products" :key="product.id">
             <product-item
                 :product="product"
-                          :order-id="orderId" :is-company="isCompany" :is-admin="isAdmin"
-                          @event-update-product="findAllProducts"
-                          @event-update-order="findAllProducts"
-            />
+                :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin="isAdmin"
+                @event-update-product="findAllProducts()"
+                @event-update-order="getPendingOrderInfo"/>
           </div>
         </div>
       </div>
@@ -45,7 +54,6 @@ export default {
 
   data() {
     return {
-      orderId: Number(sessionStorage.getItem('orderId')),
       products: [
         {
           productId: 0,
@@ -67,26 +75,36 @@ export default {
           productBalance: 0
         }
       ],
-
       errorResponseProducts: {
         message: '',
         errorCode: 0
       },
-
       orderInfo: {
         orderId: 0,
         numberOfProducts: 0
       },
-
       showProducts: false
     }
 
   },
 
   methods: {
+    goToProfile() {
+      let roleName = sessionStorage.getItem('roleName');
+
+      if (roleName === 'company') {
+        router.push({name: 'profileCompanyRoute'});
+      }else {
+        router.push({name: 'profileCustomerRoute'})
+      }
+
+
+    },
+    goToCart() {
+      router.push({name: 'cartRoute'})
+    },
 
     findAllProducts() {
-      this.updateNavMenu()
       this.$http.get("/products")
           .then(response => {
             this.products = response.data
@@ -102,31 +120,33 @@ export default {
             router.push({name: 'errorRoute'})
           })
     },
-
-    goToAddProductView() {
-      router.push({name: 'addNewProductRoute'})
-    },
-    updateNavMenu() {
-      this.$emit('event-update-nav-menu')
-    },
-    getCompanyId() {
-      this.$http.get("/company", {
+    getPendingOrderInfo() {
+      this.$http.get("/order/pending", {
             params: {
               userId: sessionStorage.getItem('userId'),
             }
           }
       ).then(response => {
-        sessionStorage.setItem('companyId', response.data.toString())
+        this.orderInfo = response.data
+        //alert('number of products: ' + this.orderInfo.numberOfProducts)
       }).catch(error => {
+        alert('getPendingOrderId Error')
       })
+    },
+    logOut() {
+      sessionStorage.clear()
+      this.$emit('event-update-nav-menu')
+      router.push({name: 'homeRoute'})
+    },
+    goToAddProductView() {
+      router.push({name: 'addNewProductRoute'})
     },
 
   },
   mounted() {
-    this.updateNavMenu()
+    this.getPendingOrderInfo()
   },
   beforeMount() {
-    this.getCompanyId()
     this.findAllProducts()
     this.$emit('event-update-nav-menu')
   }
