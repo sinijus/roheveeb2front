@@ -9,6 +9,7 @@ body {
     background-position: center center; /* Adjust as needed */
 }
 
+
 /* shop grid styles*/
 .product-item {
     /*border: 1px solid #ccc;*/
@@ -101,6 +102,41 @@ body {
     justify-content: space-between; /* Adjust the spacing as needed */
     align-items: center;
 }
+.table {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+    justify-items: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Add some spacing between components if needed */
+}
+.component {
+width: 400px
+}
+.cart-item {
+    /*border: 1px solid #ccc;*/
+    padding: 10px;
+    max-width: 400px;
+    max-height: 400px;
+    text-align: left;
+    font-weight: bold;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 6px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    margin: 30px;
+
+}
+.btn-primary {
+    margin: 50px;
+
+}
+
 
 .introduction-text {
     bottom: 30px;
