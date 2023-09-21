@@ -17,6 +17,17 @@
           </div>
         </div>
       </div>
+
+      <div class="row justify-content-center">
+        <div class="col col-3">
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <categoriesDropdown ref="category" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row justify-content-center">
         <div class="col col-3">
           <div class="input-group mb-3">
@@ -29,15 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col col-3">
-          <div class="input-group mb-3">
-            <div class="input-group">
-              <categoriesDropdown ref="category" class="form-control"/>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div class="row justify-content-center">
         <div class="col col-3">
           <div class="input-group mb-3">
@@ -142,6 +145,10 @@ export default {
     setUnitId(unitId) {
       this.addNewProductRequest.measureUnitId = unitId;
     },
+    handleSelectedCategoryId(categoryId) {
+      this.selectedCategoryId = categoryId;
+      this.getTypesByCategoryId()
+    },
     validateAndAddNewProduct() {
       if (this.areInputFieldsFilled()) {
         this.addNewProduct()
@@ -178,6 +185,21 @@ export default {
     },
     updateCategoryIdDropdown(categoryId) {
       this.$refs.category.selectedCategoryId = categoryId
+    },
+    getTypesByCategoryId() {
+      this.$http.get("/add-new-product", {
+            params: {
+              categoryId: sessionStorage.getItem('categoryId'),
+
+            }
+          }
+      ).then(response => {
+        // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
+        this.selectedCategoryId = response.data
+      }).catch(error => {
+        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+        this.errorResponseAddNewProduct = error.response.data
+      })
     },
   },
   mounted() {
