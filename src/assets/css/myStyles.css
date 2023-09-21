@@ -82,3 +82,8 @@ body {
     justify-content: space-between; /* Adjust the spacing as needed */
     align-items: center;
 }
+.table {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
