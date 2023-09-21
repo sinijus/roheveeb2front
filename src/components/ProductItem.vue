@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="row">
-              <font-awesome-icon :icon="['fas', 'cart-shopping']" @click="addProductToCart" type="button" size="xl"
+              <font-awesome-icon v-if="isCustomer" :icon="['fas', 'cart-shopping']" @click="addProductToCart" type="button" size="xl"
                                  aria-valuenow="5"/>
             </div>
           </div>
@@ -79,7 +79,6 @@ export default {
       this.$http.post("/order-product", this.addProductBody
       ).then(response => {
         //const responseBody = response.data
-        alert('toode lisatud')
         this.openAddItemsToCart()
 
       }).catch(error => {
@@ -118,6 +117,9 @@ export default {
     goToEditView() {
       router.push({name: 'addNewProductRoute'})
     },
+    isCustomer() {
+      return !this.isCompany && !this.isAdmin
+    }
 
   },
   mounted() {
