@@ -5,7 +5,6 @@
   <div>
     <table class="table table-bordered"
            style="border:1px solid black;margin-left:auto;margin-right:auto">
-
       <thead>
       <tr class="table-active"></tr>
       </thead>
@@ -36,7 +35,7 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="14">
           Summa kokku: {{ cartSum }} €
         </td>
       </tr>
@@ -48,69 +47,46 @@
     </table>
   </div>
 
+  <div class="grid-container">
+      <component class="cart-item">
+        <form>
+          <fieldset class="col-8">
+            <legend>Tarne:</legend>
+            <div v-for="transportOption in transportOptions">
+              <input type="radio" id="willgetitmyself" name="delivery" value="willgetitmyself" checked/>
+              <label for="willgetitmyself">{{ transportOption.method }} {{transportOption.fee }} €</label>
+            </div>
+            <p></p>
 
-  <component>
-    <form>
-      <fieldset class="row">
-        <legend>Tarne:</legend>
-
-        <div>
-          <input type="radio" id="willgetitmyself" name="delivery" value="willgetitmyself" checked/>
-          <label for="willgetitmyself">Tulen ise järele 0,00 €</label>
-        </div>
-
-        <div>
-          <input type="radio" id="getshipping" name="delivery" value="getshipping"/>
-          <label for="getshipping">Kuller 7,99 €</label>
-        </div>
-      </fieldset>
-    </form>
-  </component>
-
-
-  <div>
-    <h4>Tarneaeg on reeglina 3 tööpäeva. </h4>
-    <h4>Kokkuleppel müüjaga saab tarneaega muuta. </h4>
+          </fieldset>
+        </form>
+      </component>
+      <component class="cart-item">
+        <form>
+          <fieldset class="col-6">
+            <legend>Makseviis:</legend>
+            <div v-for="paymentOption in paymentOptions">
+              <input type="radio" id="paymentType" name="paymentmethod" value="transfer" checked/>
+              <label for="banktransfer">{{ paymentOption.paymentMethod }}</label>
+            </div>
+            <p></p>
+          </fieldset>
+        </form>
+      </component>
   </div>
 
   <div>
-    <h4>Summa kokku</h4>
-    <h11>Summa tuleb tuua kogus x hind</h11>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary" type="button">Esita Tellimus</button>
+    </div>
   </div>
 
 
-  <component>
-    <form>
-      <fieldset class="row">
-        <legend>Makseviis:</legend>
 
-        <div>
-          <input type="radio" id="banktransferSEB" name="paymentmethod" value="transfer" checked/>
-          <label for="banktransfer">SEB</label>
-        </div>
 
-        <div>
-          <input type="radio" id="banktransferLUMINOR" name="paymentmethod" value="transfer" checked/>
-          <label for="banktransfer">LUMINOR</label>
-        </div>
 
-        <div>
-          <input type="radio" id="banktransferSWEDBANK" name="paymentmethod" value="transfer" checked/>
-          <label for="banktransfer">SWEDBANK</label>
-        </div>
 
-        <div>
-          <input type="radio" id="banktransferLHV" name="paymentmethod" value="transfer" checked/>
-          <label for="banktransfer">LHV</label>
-        </div>
 
-        <div>
-          <input type="radio" id="paywithcash" name="paymentmethod" value="cash"/>
-          <label for="paywithcash">Tasun sularahas kauba kättesaamisel</label>
-        </div>
-      </fieldset>
-    </form>
-  </component>
 
 
 </template>
