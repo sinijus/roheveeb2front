@@ -1,19 +1,19 @@
 <template>
-  <div className="page">
-    <div className="row">
-      <div className="col justify-content-right">
-        <div className="introduction-text"> {{ introductionText }}</div>
+  <div class="page">
+    <div class="row">
+      <div class="col">
+        <div class="introduction-text"> {{ introductionText }}</div>
       </div>
-      <div className="col">
+      <div class="col">
         <div class="login-box">
         <LoginRegisterBox @event-udpate-nav-menu="handleNavMenuUpdate()"/>
         </div>
       </div>
     </div>
   </div>
-
-  <div className="adjustable-image"><img src="https://media.voog.com/0000/0048/2898/photos/porgand.png"></div>
-
+  <div class="adjustable-image">
+    <img style="width: 300px; height: 300px" src="https://media.voog.com/0000/0048/2898/photos/porgand.png">
+  </div>
 </template>
 
 <script>

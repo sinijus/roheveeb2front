@@ -3,6 +3,7 @@
     <ModalRegister ref="modalRegisterRef"/>
     <div class="row justify-content-evenly">
       <div class="col col-4">
+        <label class="custom-label" for="e-mail">Sisselogimine</label>
         <div class="input-group mb-2">
           <div class="input-group">
             <input v-model="email" type="text" class="form-control" placeholder="e-mail">
@@ -38,27 +39,7 @@
       </div>
     </div>
   </div>
-  <!--    <div class="col col-3">-->
-  <!--      <div class="row justify-content-right" @keydown.enter="login">-->
-  <!--        <div>-->
-  <!--          <input v-model="email" type="text" class="form-control" placeholder="e-mail"-->
-  <!--                 aria-describedby="addon-wrapping">-->
-  <!--          <input v-model="password" type="text" class="form-control" placeholder="parool"-->
-  <!--                 aria-describedby="addon-wrapping">-->
-  <!--        </div>-->
-  <!--        <div>-->
-  <!--          <div>-->
-  <!--            <button type="button" class="btn btn-link" @click="openModalRegister()">Registreeri</button>-->
-  <!--          </div>-->
-  <!--          <div>-->
-  <!--            <button @click="login" type="button" class="btn btn-success">Logi sisse</button>-->
-  <!--          </div>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-
-
-</template>
+  </template>
 
 <script>
 import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
