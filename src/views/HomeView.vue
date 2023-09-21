@@ -22,7 +22,7 @@ import {HOME_VIEW_INTRODUCTION} from "@/assets/text/text.storage";
 import LoginRegisterBox from "@/components/LoginRegisterBox.vue";
 import ModalRegister from "@/components/modal/ModalRegister.vue";
 import ImageInput from "@/views/ImageInput.vue";
-import ContactTextBox from "@/views/ContactTextBox.vue";
+import ContactTextBox from "@/components/ContactTextBox.vue";
 
 export default {
   name: 'HomeView',

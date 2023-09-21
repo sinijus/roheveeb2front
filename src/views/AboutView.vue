@@ -23,5 +23,5 @@
 </template>
 
 <script setup>
-import ContactTextBox from "@/views/ContactTextBox.vue";
+import ContactTextBox from "@/components/ContactTextBox.vue";
 </script>

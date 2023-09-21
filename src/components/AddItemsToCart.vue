@@ -34,6 +34,7 @@ export default {
   methods: {
     updateOrder () {
       this.$emit('event-update-order')
+      this.$refs.modalRef.closeModal();
     },
     goToCart() {
       router.push({name: 'cartRoute'})
