@@ -15,7 +15,7 @@
       <div class="col col-4">
         <div class="input-group mb-2">
           <div class="input-group">
-            <input v-model="password" type="text" class="form-control" placeholder="parool">
+            <input v-model="password" type="password" class="form-control" placeholder="parool">
           </div>
         </div>
       </div>

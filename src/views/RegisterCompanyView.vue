@@ -54,7 +54,7 @@ import registerNewCompanyEmail from "@/components/RegisterNewCompanyEmail.vue";
           <div class="row">
             <div class="input-group mb-3">
               <span class="input-group-text">IBAN*</span>
-              <input v-model="newCompany.iban" type="number" class="form-control">
+              <input v-model="newCompany.iban" type="text" class="form-control">
             </div>
           </div>
 
@@ -86,10 +86,9 @@ import registerNewCompanyEmail from "@/components/RegisterNewCompanyEmail.vue";
           <div class="row">
             <div class="input-group mb-3">
               <span class="input-group-text">Sisesta postiindeks*</span>
-              <input v-model="newCompany.postalCode" type="text" class="form-control">
+              <input v-model="newCompany.postalCode" type="number" class="form-control">
             </div>
           </div>
-
         </div>
       </div>
     </div>
