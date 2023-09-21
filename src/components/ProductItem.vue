@@ -19,14 +19,14 @@
             </div>
           </div>
           <div class="col">
-            <div class="row">
+            <div class="row m-2">
               <font-awesome-icon v-if="isCompany" :icon="['fas', 'pen-to-square']" @click="goToEditView" type="button"
                                  size="lg"/>
               <div v-else>
                 <p></p>
               </div>
             </div>
-            <div class="row">
+            <div class="row m-2">
               <font-awesome-icon v-if="isCompany" :icon="['fas', 'trash-can']" @click="deleteProduct" type="button"
                                  size="lg"/>
               <div v-else>
