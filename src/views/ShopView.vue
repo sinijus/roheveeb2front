@@ -6,8 +6,10 @@
           <h1>E-pood</h1>
         </div>
         <div class="col">
-          <font-awesome-icon :icon="['fas', 'cart-shopping']" style="margin-right: 10px;" @click="goToCart" type="button" size="xl"/>
+          <div v-if="isCompany">
+          <v-font-awesome-icon :icon="['fas', 'cart-shopping']" style="margin-right: 10px;" @click="goToCart" type="button" size="xl"/>
           {{ orderInfo.numberOfProducts }}
+          </div>
 
           <font-awesome-icon :icon="['fas', 'user']" size="xl" @click="goToProfile" type="button"
                              style="margin-right: 10px;"/>
@@ -23,9 +25,9 @@
           <div class="grid-item" v-for="product in products" :key="product.id">
             <product-item
                 :product="product"
-                          :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin="isAdmin"
-                          @event-update-product="findAllProducts()"
-                          @event-update-order="getPendingOrderInfo"/>
+                :order-id="orderInfo.orderId" :is-company="isCompany" :is-admin="isAdmin"
+                @event-update-product="findAllProducts()"
+                @event-update-order="getPendingOrderInfo"/>
           </div>
         </div>
       </div>
@@ -39,7 +41,7 @@
 import router from "@/router";
 import ProductItem from "@/components/ProductItem.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import AddProductItem from "@/views/AddProductItem.vue";
+import AddProductItem from "@/components/AddProductItem.vue";
 
 export default {
   name: "ShopView",

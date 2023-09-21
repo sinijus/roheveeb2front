@@ -1,8 +1,8 @@
 <template>
     <select v-model="selectedCategoryId" @change="emitSelectedCategoryId" class="form-select">
-      <option selected :value="0">Juurviljad ja köögiviljad</option>
-      <option v-for="category in categories" :value="category.categoryId" :key="category.categoryId">{{
-        category.categoryName }}
+      <option selected :value="0">-- vali kategooria --</option>
+      <option v-for="category in categories" :value="category.categoryId" :key="category.categoryId">
+        {{category.categoryName }}
       </option>
     </select>
 </template>

@@ -3,7 +3,9 @@
   <div class="product-item">
     <div class="content">
       <div class="row">
-        <div><img :src="product.productImageData" alt="Product Image"/></div>
+        <div>
+          <img width="280" :src="product.productImageData" alt="Product Image"/>
+        </div>
         <div>{{ product.productName }}</div>
         <div>{{ product.companyName }}</div>
         <div class="row">

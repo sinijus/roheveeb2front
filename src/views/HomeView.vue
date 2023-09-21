@@ -1,16 +1,18 @@
 <template>
-  <div class="page">
-    <div class="row">
-      <div class="col justify-content-right">
-        <div class="introduction-text"> {{ introductionText }}</div>
+  <div className="page">
+    <div className="row">
+      <div className="col justify-content-right">
+        <div className="introduction-text"> {{ introductionText }}</div>
       </div>
-      <div class="col">
+      <div className="col">
+        <div class="login-box">
         <LoginRegisterBox @event-udpate-nav-menu="handleNavMenuUpdate()"/>
+        </div>
       </div>
     </div>
-    </div>
+  </div>
 
-   <div class="adjustable-image"><img src="https://media.voog.com/0000/0048/2898/photos/porgand.png">"></div>
+  <div className="adjustable-image"><img src="https://media.voog.com/0000/0048/2898/photos/porgand.png"></div>
 
 </template>
 
@@ -43,6 +45,3 @@ export default {
 }
 
 </script>
-
-
-
