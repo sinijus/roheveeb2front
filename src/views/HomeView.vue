@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div className="adjustable-image"><img src="https://media.voog.com/0000/0048/2898/photos/porgand.png">"></div>
+  <div className="adjustable-image"><img src="https://media.voog.com/0000/0048/2898/photos/porgand.png"></div>
 
 </template>
 

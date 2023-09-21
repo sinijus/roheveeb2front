@@ -50,12 +50,12 @@ form {
       </tr>
 
       <tr>
-        <th colspan="2" class="table-active"><img src="getpicturedata"></th>
-        <td colspan="2" class="table-active">"getkartulgala"</td>
+        <th colspan="2" class="table-active"></th>
+        <td colspan="2" class="table-active"></td>
         <td colspan="2" class="table-active"> <input class="quantity" id="id_form-0-quantity" min="0" name="form-0-quantity" value="1" type="number"></td>
-        <td colspan="2" class="table-active">tuleb andmebaasist</td>
-        <td colspan="2" class="table-active">hind x kogus</td>
-        <td colspan="2" class="table-active"><font-awesome-icon :icon="['fas', 'trash-can']" /></td>
+        <td colspan="2" class="table-active"></td>
+        <td colspan="2" class="table-active"></td>
+        <td colspan="2" class="table-active">Delete item<font-awesome-icon :icon="['fas', 'trash-can']" /></td>
 
       </tr>
 
