@@ -77,7 +77,7 @@
 
   <div>
     <div class="d-grid gap-2 col-6 mx-auto">
-      <button class="btn btn-primary" type="button">Esita Tellimus</button>
+      <button class="btn btn-primary" type="button" @click="placeOrder()">Esita Tellimus</button>
     </div>
   </div>
 
@@ -195,6 +195,9 @@ export default {
       }
       this.cartResponse.grandTotalSum = grandTotalSum;
     },
+    placeOrder() {
+      alert('Veel ei tööta')
+    }
   },
 
   beforeMount() {
