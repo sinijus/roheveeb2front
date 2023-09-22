@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td colspan="14">
-          Summa kokku: {{ cartResponse.grandTotalSum }} €
+          Summa kokku: {{ parseFloat(cartResponse.grandTotalSum).toFixed(2) }} €
         </td>
       </tr>
 
@@ -54,7 +54,7 @@
           <legend>Tarne:</legend>
           <div v-for="transportOption in transportOptions">
             <input type="radio" id="willgetitmyself" name="delivery" value="willgetitmyself" checked/>
-            <label for="willgetitmyself">{{ transportOption.method }} {{transportOption.fee }} €</label>
+            <label for="willgetitmyself">{{ transportOption.method }} {{parseFloat(transportOption.fee).toFixed(2)}} €</label>
           </div>
           <p></p>
 
@@ -121,7 +121,7 @@ export default {
         {
           id: 0,
           method: '',
-          fee: 0
+          fee: 0.00
         }
       ],
       paymentOptions: [

@@ -75,7 +75,6 @@ export default {
       this.addProductBody.orderId = sessionStorage.getItem('orderId')
       this.addProductBody.productId = this.product.productId
 
-      alert('orderId: ' + this.addProductBody.orderId + '\n productId: ' + this.addProductBody.productId + '\n amount: ' + this.addProductBody.productAmount)
       this.$http.post("/order-product", this.addProductBody
       ).then(response => {
         //const responseBody = response.data

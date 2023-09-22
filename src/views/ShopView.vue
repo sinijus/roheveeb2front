@@ -118,7 +118,6 @@ export default {
           }
       ).then(response => {
         this.orderInfo = response.data
-        //alert('number of products: ' + this.orderInfo.numberOfProducts)
       }).catch(error => {
         alert('getPendingOrderId Error')
       })
